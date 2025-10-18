@@ -22,14 +22,20 @@ export function ListingSection() {
 
         {/* Category tabs */}
         <nav aria-label="Categories" className="mt-6 w-full">
-          <ul className="flex flex-wrap items-center gap-6 text-sm md:text-base text-brand-ink/70">
+          <ul className="flex w-full flex-wrap items-center text-sm md:text-base text-brand-ink/70">
             {categories.map((c, idx) => (
-              <li key={c} className="relative">
-                <a href="#" className={`hover:text-brand-ink ${idx === 0 ? "text-brand-ink" : ""}`}>
+              <li key={c} className="relative flex-1 min-w-0">
+                <a
+                  href="#"
+                  className={`block w-full px-2 py-2 text-center hover:text-brand-ink ${idx === 0 ? "text-brand-ink" : ""}`}
+                >
                   {c}
                 </a>
                 {idx === 0 && (
-                  <span aria-hidden="true" className="absolute -bottom-2 left-0 h-[2px] w-16 bg-brand-ink/50" />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -bottom-2 left-1/2 h-[2px] w-full -translate-x-1/2 bg-brand-ink/50"
+                  />
                 )}
               </li>
             ))}
@@ -37,9 +43,9 @@ export function ListingSection() {
         </nav>
 
         {/* Main content grid */}
-        <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-[280px,1fr]">
+        <div className="mt-8 grid grid-cols-12 gap-10 md:grid-cols-[280px,1fr]">
           {/* Sidebar filters */}
-          <aside aria-label="Filters" className="space-y-8">
+          <aside aria-label="Filters" className="col-span-3 space-y-8">
             <div>
               <h3 className="text-base font-medium text-brand-ink">Lenggah Signature Collection</h3>
               <p className="mt-2 text-sm leading-relaxed text-brand-ink/70">
@@ -72,7 +78,7 @@ export function ListingSection() {
           </aside>
 
           {/* Products area */}
-          <div className="space-y-6">
+          <div className="col-span-9 space-y-6">
             {/* Top row */}
             <div className="flex items-center justify-between">
               <p className="text-sm text-brand-ink/80">
