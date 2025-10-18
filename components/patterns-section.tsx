@@ -1,7 +1,14 @@
-import { ChevronRight } from "lucide-react"
+import { ChevronRight } from "lucide-react";
 
 export function PatternsSection() {
-  const tabs = ["Abstract", "Geometric", "Nordic", "Japanese", "Aztec", "Indonesia", "Indonesia"]
+  const tabs = [
+    "Abstract",
+    "Geometric",
+    "Nordic",
+    "Japanese",
+    "Aztec",
+    "Indonesia",
+  ];
 
   const cards = [
     { id: 1, title: "Lorem ipsum dolor sit amet" },
@@ -10,29 +17,40 @@ export function PatternsSection() {
     { id: 4, title: "Lorem ipsum dolor sit amet" },
     { id: 5, title: "Lorem ipsum dolor sit amet" },
     { id: 6, title: "Lorem ipsum dolor sit amet", hasChevron: true },
-  ]
+  ];
 
   return (
     <section className="bg-background px-6 py-16 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <h2 className="font-display text-3xl leading-snug tracking-tight text-foreground lg:text-4xl lg:leading-tight">
-          Various Patterns inspired by global ethnic artistry and crafted to be uniquely yours.
+          Various Patterns inspired by global ethnic artistry and crafted to be
+          uniquely yours.
         </h2>
 
-        {/* Tab navigation */}
-        <div className="mt-12 flex gap-8 border-b border-border/30">
-          {tabs.map((tab, idx) => (
-            <button
-              key={idx}
-              className={`pb-4 text-sm font-light tracking-wide transition-colors lg:text-base ${
-                idx === 0 ? "border-b-2 border-foreground text-foreground" : "text-foreground/60 hover:text-foreground"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        {/* Category tabs */}
+        <nav aria-label="Categories" className="mt-6 w-full">
+          <ul className="flex w-full flex-wrap items-center text-sm md:text-base text-brand-ink/70">
+            {tabs.map((c, idx) => (
+              <li key={c} className="relative flex-1 min-w-0">
+                <a
+                  href="#"
+                  className={`block w-full px-2 py-2 text-center hover:text-brand-ink ${
+                    idx === 0 ? "text-brand-ink" : ""
+                  }`}
+                >
+                  {c}
+                </a>
+                {idx === 0 && (
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -bottom-2 left-1/2 h-[2px] w-full -translate-x-1/2 bg-brand-ink/50"
+                  />
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         {/* Horizontal scrollable card grid */}
         <div className="mt-12 overflow-x-auto">
@@ -57,7 +75,9 @@ export function PatternsSection() {
 
                 {/* Card footer */}
                 <div className="bg-secondary/40 p-4">
-                  <p className="text-sm leading-relaxed text-foreground">{card.title}</p>
+                  <p className="text-sm leading-relaxed text-foreground">
+                    {card.title}
+                  </p>
                 </div>
               </div>
             ))}
@@ -66,11 +86,20 @@ export function PatternsSection() {
 
         {/* Pagination dots */}
         <div className="mt-8 flex items-center justify-center gap-3">
-          <button aria-label="Page 1" className="h-3 w-3 rounded-full bg-accent" />
-          <button aria-label="Page 2" className="h-3 w-3 rounded-full bg-border" />
-          <button aria-label="Page 3" className="h-3 w-3 rounded-full bg-border" />
+          <button
+            aria-label="Page 1"
+            className="h-3 w-3 rounded-full bg-accent"
+          />
+          <button
+            aria-label="Page 2"
+            className="h-3 w-3 rounded-full bg-border"
+          />
+          <button
+            aria-label="Page 3"
+            className="h-3 w-3 rounded-full bg-border"
+          />
         </div>
       </div>
     </section>
-  )
+  );
 }
