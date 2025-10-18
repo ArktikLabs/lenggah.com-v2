@@ -8,7 +8,7 @@ export function Hero() {
       <div className="grid min-h-[520px] grid-cols-1 md:grid-cols-2">
         {/* Left: dark teal panel with text */}
         <div className="bg-brand-teal text-[color:var(--primary-foreground)]">
-          <div className="mx-auto flex h-full max-w-xl flex-col justify-center gap-6 px-6 py-12 md:px-10">
+          <div className="mx-auto flex h-full max-w-xl flex-col justify-center gap-6 px-6 py-12 md:px-10 text-center">
             <h1 className="font-display text-balance text-4xl leading-tight md:text-6xl">
               Crafted For The
               <br /> One Who Seek
@@ -30,7 +30,7 @@ export function Hero() {
             </div>
 
             {/* pagination dots */}
-            <div className="mt-4 flex items-center gap-3" aria-label="Hero slides">
+            <div className="mt-4 flex items-center gap-3 justify-center" aria-label="Hero slides">
               <span aria-current="true" className="h-3 w-3 rounded-full bg-[color:var(--color-brand-sand)]" />
               <span className="h-3 w-3 rounded-full border border-[color:var(--color-brand-sand)]" />
               <span className="h-3 w-3 rounded-full border border-[color:var(--color-brand-sand)]" />

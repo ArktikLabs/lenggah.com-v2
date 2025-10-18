@@ -17,13 +17,11 @@ export function ListingSection() {
       <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
         {/* Heading */}
         <h2 className="font-display text-pretty text-3xl leading-tight text-brand-ink/80 md:text-5xl">
-          Explore the range of chairs designed by Lenggah to
-          <br className="hidden md:block" />
-          match your taste, lifestyle, and space.
+          Explore the range of chairs designed by Lenggah to match your taste, lifestyle, and space.
         </h2>
 
         {/* Category tabs */}
-        <nav aria-label="Categories" className="mt-6">
+        <nav aria-label="Categories" className="mt-6 w-full">
           <ul className="flex flex-wrap items-center gap-6 text-sm md:text-base text-brand-ink/70">
             {categories.map((c, idx) => (
               <li key={c} className="relative">
