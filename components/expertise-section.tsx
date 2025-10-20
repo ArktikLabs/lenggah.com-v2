@@ -18,38 +18,6 @@ const features = [
 export function ExpertiseSection() {
   return (
     <section className="bg-white">
-      {/* Orange CTA panel */}
-      <div className="bg-brand-orange px-6 py-16 text-center md:py-20">
-        <h2 className="mx-auto w-full max-w-4xl font-headings text-pretty text-3xl leading-tight text-white md:text-5xl">
-          Custom your seat where every detail speaks your identity and story
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
-          Start your custom chair journey and book a private session today
-        </p>
-        <Button
-          variant="outline"
-          className="mt-8 rounded-xl border-2 border-white bg-transparent px-8 py-5 text-base text-white hover:bg-white/10"
-        >
-          Contact Us
-        </Button>
-      </div>
-
-      {/* Dark teal features panel */}
-      <div className="bg-brand-teal px-6 py-10 md:py-14">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 md:grid-cols-4 md:gap-10">
-          {features.map((f) => (
-            <div
-              key={f.label}
-              className="flex flex-col items-center text-center"
-            >
-              <f.icon className="h-10 w-10 text-white md:h-12 md:w-12" />
-              <p className="mt-3 text-sm leading-snug text-white md:text-base">
-                {f.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* White/sand expertise content panel */}
       <div className="bg-white px-4 py-10 md:py-16">
