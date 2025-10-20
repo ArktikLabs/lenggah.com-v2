@@ -20,7 +20,7 @@ export function ExpertiseSection() {
     <section className="bg-white">
       {/* Orange CTA panel */}
       <div className="bg-brand-orange px-6 py-16 text-center md:py-20">
-        <h2 className="mx-auto w-full max-w-4xl font-display text-pretty text-3xl leading-tight text-white md:text-5xl">
+        <h2 className="mx-auto w-full max-w-4xl font-headings text-pretty text-3xl leading-tight text-white md:text-5xl">
           Custom your seat where every detail speaks your identity and story
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
@@ -55,7 +55,7 @@ export function ExpertiseSection() {
       <div className="bg-white px-4 py-10 md:py-16">
         <div className="mx-auto w-full max-w-6xl">
           {/* Heading */}
-          <h2 className="font-display text-pretty text-3xl leading-tight text-brand-ink/80 md:text-5xl">
+          <h2 className="font-headings text-pretty text-3xl leading-tight text-brand-light-teal/80 md:text-5xl">
             Your creativity meets our expertise. Lenggah
             <br className="hidden md:block" />
             transforms ideas into chairs that truly yours.

@@ -33,8 +33,8 @@ export function JourneySection() {
         {/* Title */}
         <h2
           id="journey-title"
-          className="text-pretty text-3xl md:text-5xl leading-tight text-foreground/90"
-          style={{ fontFamily: "var(--font-display, var(--font-sans))" }}
+          className="text-pretty text-3xl md:text-5xl leading-tight text-foreground/80"
+          style={{ fontFamily: "var(--font-headings, var(--font-sans))" }}
         >
           Discover your journey with Lenggah. Explore what fits you best.
         </h2>

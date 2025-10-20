@@ -1,15 +1,18 @@
-"use client"
+"use client";
 
-import { Search } from "lucide-react"
-import Link from "next/link"
-import { BrandLogo } from "./brand-logo"
+import { Search } from "lucide-react";
+import Link from "next/link";
+import { BrandLogo } from "./brand-logo";
 
 export function NavTop() {
   return (
     <header className="w-full border-b border-[color:var(--color-border)] bg-brand-sand">
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex h-20 items-center justify-between">
-          <Link href="#" className="text-sm md:text-base text-brand-ink/70 hover:opacity-80">
+          <Link
+            href="#"
+            className="text-sm md:text-base text-brand-ink/70 hover:opacity-80"
+          >
             Our Services
           </Link>
           <BrandLogo />
@@ -27,9 +30,12 @@ export function NavTop() {
         </div>
       </div>
       {/* category strip */}
-      <nav aria-label="Categories" className="border-t border-[color:var(--color-border)] bg-secondary">
+      <nav
+        aria-label="Categories"
+        className="border-t border-[color:var(--color-border)] bg-secondary"
+      >
         <div className="mx-auto max-w-6xl px-4">
-          <ul className="flex h-12 items-center justify-between text-xs md:text-sm text-brand-ink/70">
+          <ul className="flex h-12 items-center justify-between text-sm md:text-base text-brand-ink/70">
             {[
               "Latest",
               "Our Signatures",
@@ -40,7 +46,10 @@ export function NavTop() {
               "Create From the Scratch",
             ].map((item) => (
               <li key={item}>
-                <a href="#" className="hover:text-brand-ink hover:underline underline-offset-4">
+                <a
+                  href="#"
+                  className="hover:text-brand-ink hover:underline underline-offset-4"
+                >
                   {item}
                 </a>
               </li>
@@ -49,5 +58,5 @@ export function NavTop() {
         </div>
       </nav>
     </header>
-  )
+  );
 }

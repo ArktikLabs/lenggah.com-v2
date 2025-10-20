@@ -11,10 +11,10 @@ export function Footer() {
             <div className="md:col-span-5">
               <div className="mb-4 flex items-center gap-2">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white">
-                  <span className="font-display text-xl font-light">L</span>
+                  <span className="font-headings text-xl font-light">L</span>
                 </div>
               </div>
-              <h3 className="font-display text-lg font-light">Lenggah</h3>
+              <h3 className="font-headings text-lg font-light">Lenggah</h3>
               <p className="mt-2 text-sm text-white/80">Seat Authentically Yours</p>
             </div>
 

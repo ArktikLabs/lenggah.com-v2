@@ -21,9 +21,9 @@ export function PatternsSection() {
 
   return (
     <section className="bg-white px-6 py-16 lg:px-12 lg:py-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-6xl">
         {/* Heading */}
-        <h2 className="font-display text-3xl leading-snug tracking-tight text-foreground lg:text-4xl lg:leading-tight">
+        <h2 className="font-headings text-3xl leading-snug tracking-tight text-brand-light-teal/80 lg:text-4xl lg:leading-tight">
           Various Patterns inspired by global ethnic artistry and crafted to be
           uniquely yours.
         </h2>

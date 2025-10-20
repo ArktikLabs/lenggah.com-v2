@@ -16,7 +16,7 @@ export function ListingSection() {
     <section className="bg-white">
       <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
         {/* Heading */}
-        <h2 className="font-display text-pretty text-3xl leading-tight text-brand-ink/80 md:text-5xl">
+        <h2 className="font-headings text-pretty text-3xl leading-tight text-brand-light-teal/80 md:text-5xl">
           Explore the range of chairs designed by Lenggah to match your taste, lifestyle, and space.
         </h2>
 

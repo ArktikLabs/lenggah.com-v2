@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (
@@ -9,15 +9,16 @@ export function Hero() {
         {/* Left: dark teal panel with text */}
         <div className="bg-brand-teal text-[color:var(--primary-foreground)]">
           <div className="mx-auto flex h-full max-w-xl flex-col justify-center gap-6 px-6 py-12 md:px-10 text-center">
-            <h1 className="font-display text-balance text-4xl leading-tight md:text-6xl">
+            <h1 className="font-headings text-balance text-4xl leading-tight md:text-6xl">
               Crafted For The
               <br /> One Who Seek
               <br /> Authenticity
             </h1>
 
             <p className="max-w-md text-sm leading-relaxed text-white/80">
-              Authenticity isn’t found in mass production, but in choices only you can make. Let’s create the chair you
-              envisioned and make it truly yours.
+              Authenticity isn’t found in mass production, but in choices only
+              you can make. Let’s create the chair you envisioned and make it
+              truly yours.
             </p>
 
             <div>
@@ -30,8 +31,14 @@ export function Hero() {
             </div>
 
             {/* pagination dots */}
-            <div className="mt-4 flex items-center gap-3 justify-center" aria-label="Hero slides">
-              <span aria-current="true" className="h-3 w-3 rounded-full bg-[color:var(--color-brand-sand)]" />
+            <div
+              className="mt-4 flex items-center gap-3 justify-center"
+              aria-label="Hero slides"
+            >
+              <span
+                aria-current="true"
+                className="h-3 w-3 rounded-full bg-[color:var(--color-brand-sand)]"
+              />
               <span className="h-3 w-3 rounded-full border border-[color:var(--color-brand-sand)]" />
               <span className="h-3 w-3 rounded-full border border-[color:var(--color-brand-sand)]" />
             </div>
@@ -49,5 +56,5 @@ export function Hero() {
         className="hidden"
       />
     </section>
-  )
+  );
 }
