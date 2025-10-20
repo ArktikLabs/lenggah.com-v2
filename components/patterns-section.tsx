@@ -20,7 +20,7 @@ export function PatternsSection() {
   ];
 
   return (
-    <section className="bg-background px-6 py-16 lg:px-12 lg:py-24">
+    <section className="bg-white px-6 py-16 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <h2 className="font-display text-3xl leading-snug tracking-tight text-foreground lg:text-4xl lg:leading-tight">

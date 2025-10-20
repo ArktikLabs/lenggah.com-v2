@@ -13,7 +13,7 @@ const products = new Array(6).fill(0).map((_, i) => ({
 
 export function ListingSection() {
   return (
-    <section className="bg-background">
+    <section className="bg-white">
       <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
         {/* Heading */}
         <h2 className="font-display text-pretty text-3xl leading-tight text-brand-ink/80 md:text-5xl">

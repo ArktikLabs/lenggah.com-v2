@@ -30,9 +30,9 @@ export function ConsultationForm() {
     <section className="bg-background px-8 py-16 md:px-16 md:py-24">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-12">
-          <h2 className="font-display text-4xl font-light text-foreground md:text-5xl">Book Consultation</h2>
-          <p className="mt-6 max-w-2xl text-foreground/80">
+        <div className="flex mb-12">
+          <h2 className="flex-1 font-display text-4xl font-light text-foreground md:text-5xl">Book Consultation</h2>
+          <p className="flex-1 mt-6 max-w-2xl text-foreground/80">
             Transform your ideas into a chair that's authentically yours. Fill out the form below, and our team will
             guide you from concept to creation, turning your concepts into a chair that reflects your style and
             identity.

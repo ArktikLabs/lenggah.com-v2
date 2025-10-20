@@ -6,9 +6,9 @@ export function Footer() {
       {/* Main Footer */}
       <footer className="bg-brand-teal px-8 py-16 text-white md:px-16 md:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 md:grid-cols-4">
+          <div className="grid gap-12 md:grid-cols-12">
             {/* Brand */}
-            <div>
+            <div className="md:col-span-5">
               <div className="mb-4 flex items-center gap-2">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white">
                   <span className="font-display text-xl font-light">L</span>
@@ -19,7 +19,7 @@ export function Footer() {
             </div>
 
             {/* About */}
-            <div>
+            <div className="md:col-span-2">
               <h4 className="mb-6 font-semibold">About</h4>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>
@@ -41,7 +41,7 @@ export function Footer() {
             </div>
 
             {/* Works */}
-            <div>
+            <div className="md:col-span-2">
               <h4 className="mb-6 font-semibold">Works</h4>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>
@@ -63,7 +63,7 @@ export function Footer() {
             </div>
 
             {/* Contact */}
-            <div>
+            <div className="md:col-span-3">
               <h4 className="mb-6 font-semibold">Contact</h4>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>

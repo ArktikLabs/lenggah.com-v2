@@ -2,14 +2,15 @@
 
 export function InstagramSection() {
   return (
-    <section className="bg-background px-8 py-16 md:px-16 md:py-24">
+    <section className="bg-white px-8 py-16 md:px-16 md:py-24">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 flex items-center justify-between">
-          <div>
-            <p className="text-sm text-foreground/60">@lenggah.works</p>
-            <h2 className="font-display text-4xl font-light text-foreground md:text-5xl">Follow Us on Instagram</h2>
-          </div>
+          <h2 className="font-display text-pretty text-3xl leading-tight text-brand-ink/80 md:text-5xl">
+            @lenggah.works
+            <br className="hidden md:block" />
+            Follow Us on Instagram
+          </h2>
           <button className="rounded-lg border-2 border-foreground px-6 py-2 text-foreground transition-colors hover:bg-foreground hover:text-background">
             Follow Us
           </button>
