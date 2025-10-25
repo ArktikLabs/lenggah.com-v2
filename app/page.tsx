@@ -1,12 +1,13 @@
-import { NavTop } from "@/components/nav-top"
-import { Hero } from "@/components/hero"
-import { ListingSection } from "@/components/listing-section"
-import { PatternsSection } from "@/components/patterns-section"
-import { JourneySection } from "@/components/journey-section"
-import { ExpertiseSection } from "@/components/expertise-section"
-import { InstagramSection } from "@/components/instagram-section"
-import { ConsultationForm } from "@/components/consultation-form"
-import { Footer } from "@/components/footer"
+import { NavTop } from "@/components/nav-top";
+import { Hero } from "@/components/hero";
+import { ListingSection } from "@/components/listing-section";
+import { PatternsSection } from "@/components/patterns-section";
+import { JourneySection } from "@/components/journey-section";
+import { CustomSeatSection } from "@/components/custom-seat-section";
+import { ExpertiseSection } from "@/components/expertise-section";
+import { InstagramSection } from "@/components/instagram-section";
+import { ConsultationForm } from "@/components/consultation-form";
+import { Footer } from "@/components/footer";
 
 export default function Page() {
   return (
@@ -16,10 +17,11 @@ export default function Page() {
       <ListingSection />
       <PatternsSection />
       <JourneySection />
+      <CustomSeatSection />
       <ExpertiseSection />
       <InstagramSection />
       <ConsultationForm />
       <Footer />
     </main>
-  )
+  );
 }

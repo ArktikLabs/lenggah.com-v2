@@ -7,7 +7,8 @@
   /* Brand palette (4 colors) */
   --brand-sand: #f8f5ef; /* background / light surfaces */
   --brand-ink: #1f1f1f; /* primary text */
-  --brand-teal: #0f3a37; /* dark teal hero panel & CTAs */
+  --brand-teal: #0b332d; /* dark teal hero panel & CTAs */
+  --brand-light-teal: #304b3c; /* dark teal hero panel & CTAs */
   --brand-orange: #e78c19; /* right hero block / accent */
 
   /* Map to semantic tokens */
@@ -84,12 +85,13 @@
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   /* display font provided by next/font variable */
-  --font-display: var(--font-display);
+  --font-headings: var(--font-headings);
 
   /* expose brand colors as utilities so we can use bg-brand-*, text-brand-* */
   --color-brand-sand: var(--brand-sand);
   --color-brand-ink: var(--brand-ink);
   --color-brand-teal: var(--brand-teal);
+  --color-brand-light-teal: var(--brand-light-teal);
   --color-brand-orange: var(--brand-orange);
 
   /* keep existing semantic color mappings */
