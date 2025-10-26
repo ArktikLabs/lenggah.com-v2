@@ -14,9 +14,11 @@ const _quicksand = Quicksand({
 const _dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: "Lenggah - Seat Authentically Yours",
+  description: "Custom furniture and interior design with authentic craftsmanship. Create your perfect seat with Lenggah.",
+  icons: {
+    icon: "/assets/favicon.png",
+  },
 };
 
 export default function RootLayout({
