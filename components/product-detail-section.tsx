@@ -61,9 +61,13 @@ export function ProductDetailSection() {
                       />
                     ))}
                   </div>
-                  <button className="w-full rounded-sm border-1 bg-brand-orange px-6 py-3 text-background transition-colors hover:bg-foreground hover:text-background">
+                  <Button
+                    variant="primary"
+                    size="default"
+                    className="w-full"
+                  >
                     Shop on Shopee
-                  </button>
+                  </Button>
                 </div>
                 <p className="text-pretty text-foreground/80 mt-4">
                   This item is custom and pre order within 2-4 Weeks. The
@@ -121,9 +125,13 @@ export function ProductDetailSection() {
                   Looking for something else or want to refine a piece from our
                   collection?
                   <div className="mt-4">
-                    <button className="rounded-lg border-1 border-foreground px-6 py-2 text-foreground transition-colors hover:bg-foreground hover:text-background">
+                    <Button
+                      variant="outline"
+                      colorScheme="foreground"
+                      size="sm"
+                    >
                       Contact Us
-                    </button>
+                    </Button>
                   </div>
                 </p>
               </div>

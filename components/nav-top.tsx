@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { BrandLogo } from "./brand-logo";
 import { SearchInput } from "./search-input";
+import { Button } from "./ui/button";
 
 export function NavTop() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,13 +26,15 @@ export function NavTop() {
         <div className="grid grid-cols-12 gap-4 h-16 md:h-20 items-center">
           {/* Burger menu button - visible on mobile only */}
           <div className="col-span-2 md:col-span-3 flex items-center">
-            <button
+            <Button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-brand-ink/70 hover:text-brand-ink"
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            </Button>
             <Link
               href="#"
               className="hidden lg:block text-sm lg:text-base text-brand-ink/70 hover:opacity-80 whitespace-nowrap"

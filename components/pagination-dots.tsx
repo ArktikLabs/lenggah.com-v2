@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { Button } from "./ui/button"
 
 interface PaginationDotsProps {
   totalPages: number
@@ -56,17 +57,19 @@ export function PaginationDots({
   return (
     <div className={cn("flex items-center justify-center gap-4 py-4", className)}>
       {showNavButtons && (
-        <button
+        <Button
           type="button"
+          variant="icon"
+          size="icon-sm"
           onClick={handlePrevious}
           disabled={currentPage === 1}
           aria-label="Previous page"
-          className="mr-2 grid h-6 w-6 place-items-center rounded-full border border-(--color-border) text-brand-ink/60 disabled:opacity-30 disabled:cursor-not-allowed"
+          className="mr-2"
         >
           <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M15 18l-6-6 6-6" />
           </svg>
-        </button>
+        </Button>
       )}
 
       {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -84,17 +87,19 @@ export function PaginationDots({
       ))}
 
       {showNavButtons && (
-        <button
+        <Button
           type="button"
+          variant="icon"
+          size="icon-sm"
           onClick={handleNext}
           disabled={currentPage === totalPages}
           aria-label="Next page"
-          className="ml-2 grid h-6 w-6 place-items-center rounded-full border border-(--color-border) text-brand-ink/60 disabled:opacity-30 disabled:cursor-not-allowed"
+          className="ml-2"
         >
           <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M9 6l6 6-6 6" />
           </svg>
-        </button>
+        </Button>
       )}
     </div>
   )

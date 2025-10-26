@@ -25,7 +25,9 @@ export function CustomSeatSection() {
         <a href={customSeatContent.cta.buttonLink}>
           <Button
             variant="outline"
-            className="mt-8 rounded-xl border-2 border-white bg-transparent px-8 py-5 text-base text-white hover:bg-white/10"
+            colorScheme="white"
+            size="lg"
+            className="mt-8"
           >
             {customSeatContent.cta.buttonText}
           </Button>

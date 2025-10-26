@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 interface CategoryTabsProps {
   categories: string[];
@@ -24,19 +25,20 @@ export function CategoryTabs({
               "col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2"
             )}
           >
-            <a
-              href="#"
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={(e) => {
                 e.preventDefault();
                 onCategoryClick?.(idx);
               }}
               className={cn(
-                "block w-full px-2 py-3 hover:text-brand-ink transition-colors",
-                idx === activeIndex ? "text-brand-ink font-medium" : ""
+                "w-full",
+                idx === activeIndex ? "font-medium" : ""
               )}
             >
               {category}
-            </a>
+            </Button>
             {idx === activeIndex && (
               <span
                 aria-hidden="true"

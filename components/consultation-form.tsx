@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { Button } from "./ui/button"
 
 export function ConsultationForm() {
   const [formData, setFormData] = useState({
@@ -160,12 +161,14 @@ export function ConsultationForm() {
 
           {/* Submit Button */}
           <div className="flex justify-end">
-            <button
+            <Button
               type="submit"
-              className="rounded-lg border-2 border-foreground px-8 py-3 text-foreground transition-colors hover:bg-foreground hover:text-background"
+              variant="outline"
+              colorScheme="foreground"
+              size="default"
             >
               Contact Us
-            </button>
+            </Button>
           </div>
         </form>
       </div>

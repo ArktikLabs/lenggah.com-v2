@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "./ui/button";
+
 export function InstagramSection() {
   return (
     <section className="bg-white px-8 py-16 md:px-16 md:py-24">
@@ -14,9 +16,9 @@ export function InstagramSection() {
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 flex justify-start md:justify-end">
-            <button className="rounded-lg border-2 border-foreground px-6 py-2 text-foreground transition-colors hover:bg-foreground hover:text-background">
+            <Button variant="outline" colorScheme="foreground" size="default">
               Follow Us
-            </button>
+            </Button>
           </div>
         </div>
 

@@ -8,19 +8,25 @@ export const siteContent = {
   hero: {
     slides: [
       {
-        title: "Crafted For The One Who Seek Authenticity",
+        title: "Crafted for The One Who Seek Authenticity",
         description:
-          "Authenticity isn't found in mass production, but in choices only you can make. Let's create the chair you envisioned and make it truly yours.",
+          "Authenticity isn’t found in mass production, but in choices only you can make. Let’s create the chair you envisioned and make it truly yours.",
+        ctaText: "See How It Works",
+        ctaLink: "#how-it-works",
       },
       {
-        title: "Design Your Perfect Seating Experience",
+        title: "Choose A Seat That Feels Truly Yours",
         description:
-          "From concept to creation, we transform your vision into a masterpiece. Every stitch, every curve, crafted to reflect your unique style.",
+          "Every curve, every texture, every detail of Our Signature is made to stand apart. Crafted for those who see beauty in precision and purpose.",
+        ctaText: "See Our Collections",
+        ctaLink: "#listing",
       },
       {
-        title: "Where Comfort Meets Craftsmanship",
+        title: "Reupholster the Seat You’ll Love Even More",
         description:
-          "Experience the perfect blend of traditional techniques and modern design. Each piece is handcrafted with attention to detail and built to last.",
+          "Refresh your upholstery to reflect your true taste. Lenggah’s expertise helps turn your vision into the seat you’ll love even more.",
+        ctaText: "See How It Works",
+        ctaLink: "#custom-seat",
       },
     ],
     autoSlideInterval: 5000, // milliseconds

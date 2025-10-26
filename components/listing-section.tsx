@@ -154,7 +154,8 @@ export function ListingSection() {
               <div className="flex gap-2">
                 <Button
                   onClick={applyFilters}
-                  className="w-[120px] rounded-md bg-brand-orange text-[15px] text-white hover:opacity-90"
+                  variant="primary"
+                  size="sm"
                 >
                   Apply
                 </Button>
@@ -162,7 +163,8 @@ export function ListingSection() {
                   <Button
                     onClick={clearFilters}
                     variant="outline"
-                    className="rounded-md text-[15px]"
+                    colorScheme="ink"
+                    size="sm"
                   >
                     Clear
                   </Button>
@@ -174,10 +176,12 @@ export function ListingSection() {
               <p className="text-sm leading-relaxed text-brand-ink/70">
                 {productListingContent.sidebar.customPrompt.text}
               </p>
-              <a href="#contact">
+              <a href="#contact" className="mt-4 block">
                 <Button
                   variant="outline"
-                  className="mt-4 w-full rounded-xl border-[1.5px] px-6 text-[15px] bg-transparent"
+                  colorScheme="ink"
+                  size="default"
+                  className="w-full"
                 >
                   {productListingContent.sidebar.customPrompt.buttonText}
                 </Button>

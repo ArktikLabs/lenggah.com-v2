@@ -6,6 +6,7 @@ import { SectionContainer } from "./section-container"
 import { SectionHeading } from "./section-heading"
 import { CategoryTabs } from "./category-tabs"
 import { PaginationDots } from "./pagination-dots"
+import { Button } from "./ui/button"
 import { patternListingContent } from "@/data/pattern-listing-content"
 
 export function PatternsSection() {
@@ -46,24 +47,28 @@ export function PatternsSection() {
         <div className="mt-12 relative">
           {/* Previous button */}
           {currentPage > 1 && (
-            <button
+            <Button
               onClick={() => setCurrentPage((prev) => prev - 1)}
+              variant="icon"
+              size="icon-lg"
               aria-label="Previous page"
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-background bg-background/95 text-foreground shadow-md transition-transform hover:scale-105"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10"
             >
               <ChevronRight className="h-5 w-5 rotate-180" />
-            </button>
+            </Button>
           )}
 
           {/* Next button */}
           {currentPage < totalPages && (
-            <button
+            <Button
               onClick={() => setCurrentPage((prev) => prev + 1)}
+              variant="icon"
+              size="icon-lg"
               aria-label="Next page"
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-20 z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-background bg-background/95 text-foreground shadow-md transition-transform hover:scale-105"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-20 z-10"
             >
               <ChevronRight className="h-5 w-5" />
-            </button>
+            </Button>
           )}
 
           <div className="grid grid-cols-12 gap-6 overflow-hidden">

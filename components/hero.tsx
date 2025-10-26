@@ -46,7 +46,8 @@ export function Hero() {
               <a href="#contact">
                 <Button
                   variant="outline"
-                  className="rounded-xl border-[1.5px] border-(--color-brand-sand) bg-transparent px-6 text-[15px] text-(--color-brand-sand) hover:bg-(--color-brand-sand) hover:text-brand-ink"
+                  colorScheme="sand"
+                  size="default"
                 >
                   Contact Us
                 </Button>
