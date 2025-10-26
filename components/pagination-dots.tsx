@@ -21,6 +21,11 @@ export function PaginationDots({
   showNavButtons = false,
   className,
 }: PaginationDotsProps) {
+  // Hide pagination if there's only 1 page
+  if (totalPages <= 1) {
+    return null
+  }
+
   const colorClasses = {
     sand: {
       active: variant === "filled" ? "bg-(--color-brand-sand)" : "bg-(--color-brand-sand)",
