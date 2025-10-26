@@ -59,13 +59,6 @@ export function CustomSeatSection() {
           })}
         </div>
       </div>
-
-      {/* Hidden reference image per asset rules */}
-      <img
-        src="/images/reference/expertise-reference.png"
-        alt="Reference design used to recreate expertise section"
-        className="hidden"
-      />
     </section>
   );
 }

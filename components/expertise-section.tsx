@@ -33,7 +33,7 @@ export function ExpertiseSection() {
       >
         {/* Left: image thumbnail - 3 columns with fixed aspect ratio */}
         <div className="md:col-span-3 rounded-lg overflow-hidden">
-          <div className="relative w-full aspect-[3/4]">
+          <div className="relative w-full aspect-3/4">
             {currentContent.imageUrl && (
               <Image
                 src={currentContent.imageUrl}

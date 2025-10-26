@@ -1,18 +1,12 @@
 import type React from "react";
-import Image from "next/image";
 import { Button } from "./ui/button";
 import { productListingContent } from "@/data/product-listing-content";
 
-const tabs = [
-  "Our Expertise",
-  "Expert Design Advice",
-  "Product Guarantee",
-  "White Glove Delivery",
-];
-
 export function ProductDetailSection() {
   // Using the first featured product as example
-  const product = productListingContent.products.find(p => p.featured) || productListingContent.products[0];
+  const product =
+    productListingContent.products.find((p) => p.featured) ||
+    productListingContent.products[0];
   return (
     <section className="bg-white">
       {/* White/sand expertise content panel */}
@@ -50,7 +44,7 @@ export function ProductDetailSection() {
               </div>
 
               {/* Variations */}
-              <div className="mt-6 mb-6 border-t-1 border-gray-400">
+              <div className="mt-6 mb-6 border-t border-gray-400">
                 <h2 className="mt-4 font-headings text-pretty text-brand-light-teal/80 text-2xl font-semibold">
                   Variations
                 </h2>
@@ -65,11 +59,7 @@ export function ProductDetailSection() {
                       />
                     ))}
                   </div>
-                  <Button
-                    variant="primary"
-                    size="default"
-                    className="w-full"
-                  >
+                  <Button variant="primary" size="default" className="w-full">
                     Shop on Shopee
                   </Button>
                 </div>
@@ -81,7 +71,7 @@ export function ProductDetailSection() {
               </div>
 
               {/* Product Description */}
-              <div className="mt-6 mb-6 border-t-1 border-gray-400">
+              <div className="mt-6 mb-6 border-t border-gray-400">
                 <h2 className="mt-4 font-headings text-pretty text-brand-light-teal/80 text-2xl font-semibold">
                   Product Description
                 </h2>
@@ -103,7 +93,7 @@ export function ProductDetailSection() {
               </div>
 
               {/* Product Dimension */}
-              <div className="mt-6 mb-6 border-t-1 border-gray-400">
+              <div className="mt-6 mb-6 border-t border-gray-400">
                 <h2 className="mt-4 font-headings text-pretty text-brand-light-teal/80 text-2xl font-semibold">
                   Product Dimension
                 </h2>
@@ -124,7 +114,7 @@ export function ProductDetailSection() {
               </div>
 
               {/* Contact */}
-              <div className="mt-6 mb-6 border-t-1 border-gray-400">
+              <div className="mt-6 mb-6 border-t border-gray-400">
                 <p className="text-pretty text-foreground/80 mt-4 text-lg">
                   Looking for something else or want to refine a piece from our
                   collection?
@@ -143,13 +133,6 @@ export function ProductDetailSection() {
           </div>
         </div>
       </div>
-
-      {/* Hidden reference image per asset rules */}
-      <img
-        src="/images/reference/expertise-reference.png"
-        alt="Reference design used to recreate expertise section"
-        className="hidden"
-      />
     </section>
   );
 }
