@@ -1,5 +1,9 @@
 "use client";
 
+import { SectionContainer } from "./section-container";
+import { SectionHeading } from "./section-heading";
+import { CategoryTabs } from "./category-tabs";
+
 type Step = {
   title: string;
   body: string;
@@ -28,40 +32,12 @@ export function JourneySection() {
   ];
 
   return (
-    <section aria-labelledby="journey-title" className="py-16 md:py-24">
-      <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
-        {/* Title */}
-        <h2
-          id="journey-title"
-          className="text-pretty text-3xl md:text-5xl leading-tight text-foreground/80"
-          style={{ fontFamily: "var(--font-headings, var(--font-sans))" }}
-        >
-          Discover your journey with Lenggah. Explore what fits you best.
-        </h2>
+    <SectionContainer id="journey">
+      <SectionHeading className="text-brand-ink/80">
+        Discover your journey with Lenggah. Explore what fits you best.
+      </SectionHeading>
 
-        {/* Category tabs */}
-        <nav aria-label="Categories" className="mt-6 w-full">
-          <ul className="flex w-full flex-wrap items-center text-sm md:text-base text-brand-ink/70">
-            {tabs.map((c, idx) => (
-              <li key={c} className="relative flex-1 min-w-0">
-                <a
-                  href="#"
-                  className={`block w-full px-2 py-2 text-center hover:text-brand-ink ${
-                    idx === 0 ? "text-brand-ink" : ""
-                  }`}
-                >
-                  {c}
-                </a>
-                {idx === 0 && (
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-2 left-1/2 h-[2px] w-full -translate-x-1/2 bg-brand-ink/50"
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <CategoryTabs categories={tabs} />
 
         {/* List items */}
         <div className="mt-8 space-y-8 md:space-y-10">
@@ -107,7 +83,6 @@ export function JourneySection() {
             aria-label="Slide 3"
           />
         </div>
-      </div>
-    </section>
+    </SectionContainer>
   );
 }

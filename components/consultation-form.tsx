@@ -27,16 +27,20 @@ export function ConsultationForm() {
   }
 
   return (
-    <section className="bg-background px-8 py-16 md:px-16 md:py-24">
+    <section id="contact" className="bg-background px-8 py-16 md:px-16 md:py-24">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="flex mb-12">
-          <h2 className="flex-1 font-headings text-4xl font-light text-foreground/80 md:text-5xl">Book Consultation</h2>
-          <p className="flex-1 mt-6 max-w-2xl text-foreground/80">
-            Transform your ideas into a chair that's authentically yours. Fill out the form below, and our team will
-            guide you from concept to creation, turning your concepts into a chair that reflects your style and
-            identity.
-          </p>
+        {/* Header - 12 column grid */}
+        <div className="grid grid-cols-12 gap-8 mb-12">
+          <div className="col-span-12 md:col-span-6">
+            <h2 className="font-headings text-4xl font-light text-foreground/80 md:text-5xl">Book Consultation</h2>
+          </div>
+          <div className="col-span-12 md:col-span-6">
+            <p className="text-foreground/80">
+              Transform your ideas into a chair that's authentically yours. Fill out the form below, and our team will
+              guide you from concept to creation, turning your concepts into a chair that reflects your style and
+              identity.
+            </p>
+          </div>
         </div>
 
         {/* Divider */}
@@ -44,9 +48,9 @@ export function ConsultationForm() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-12">
-          <div className="grid gap-8 md:grid-cols-2">
-            {/* The Essentials */}
-            <div>
+          <div className="grid grid-cols-12 gap-8">
+            {/* The Essentials - 6 columns */}
+            <div className="col-span-12 md:col-span-6">
               <h3 className="mb-8 text-xl font-semibold text-foreground">The Essentials</h3>
               <div className="space-y-6">
                 <div>
@@ -85,8 +89,8 @@ export function ConsultationForm() {
               </div>
             </div>
 
-            {/* Right Column */}
-            <div>
+            {/* Right Column - 6 columns */}
+            <div className="col-span-12 md:col-span-6">
               <div className="mb-8">
                 <h3 className="mb-8 text-xl font-semibold text-foreground">Project Objectives</h3>
                 <div className="space-y-6">

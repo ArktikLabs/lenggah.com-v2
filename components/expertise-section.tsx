@@ -1,5 +1,8 @@
 import type React from "react";
 import { Button } from "@/components/ui/button";
+import { SectionContainer } from "./section-container";
+import { SectionHeading } from "./section-heading";
+import { CategoryTabs } from "./category-tabs";
 
 const tabs = [
   "Our Expertise",
@@ -17,41 +20,12 @@ const features = [
 
 export function ExpertiseSection() {
   return (
-    <section className="bg-white">
+    <SectionContainer id="expertise">
+      <SectionHeading>
+        Your creativity meets our expertise. Lenggah transforms ideas into chairs that truly yours.
+      </SectionHeading>
 
-      {/* White/sand expertise content panel */}
-      <div className="bg-white px-4 py-10 md:py-16">
-        <div className="mx-auto w-full max-w-6xl">
-          {/* Heading */}
-          <h2 className="font-headings text-pretty text-3xl leading-tight text-brand-light-teal/80 md:text-5xl">
-            Your creativity meets our expertise. Lenggah
-            <br className="hidden md:block" />
-            transforms ideas into chairs that truly yours.
-          </h2>
-
-          {/* Category tabs */}
-          <nav aria-label="Categories" className="mt-6 w-full">
-            <ul className="flex w-full flex-wrap items-center text-sm md:text-base text-brand-ink/70">
-              {tabs.map((c, idx) => (
-                <li key={c} className="relative flex-1 min-w-0">
-                  <a
-                    href="#"
-                    className={`block w-full px-2 py-2 text-center hover:text-brand-ink ${
-                      idx === 0 ? "text-brand-ink" : ""
-                    }`}
-                  >
-                    {c}
-                  </a>
-                  {idx === 0 && (
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute -bottom-2 left-1/2 h-[2px] w-full -translate-x-1/2 bg-brand-ink/50"
-                    />
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
+      <CategoryTabs categories={tabs} />
 
           {/* Content card (horizontal layout) */}
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[320px,1fr]">
@@ -109,8 +83,7 @@ export function ExpertiseSection() {
               aria-label="page 3"
             />
           </div>
-        </div>
-      </div>
+
 
       {/* Hidden reference image per asset rules */}
       <img
@@ -118,7 +91,7 @@ export function ExpertiseSection() {
         alt="Reference design used to recreate expertise section"
         className="hidden"
       />
-    </section>
+    </SectionContainer>
   );
 }
 

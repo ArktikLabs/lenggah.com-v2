@@ -1,4 +1,7 @@
 import { ChevronRight } from "lucide-react";
+import { SectionContainer } from "./section-container";
+import { SectionHeading } from "./section-heading";
+import { CategoryTabs } from "./category-tabs";
 
 export function PatternsSection() {
   const tabs = [
@@ -20,41 +23,17 @@ export function PatternsSection() {
   ];
 
   return (
-    <section className="bg-white px-6 py-16 lg:px-12 lg:py-24">
-      <div className="mx-auto max-w-6xl">
-        {/* Heading */}
-        <h2 className="font-headings text-3xl leading-snug tracking-tight text-brand-light-teal/80 lg:text-4xl lg:leading-tight">
-          Various Patterns inspired by global ethnic artistry and crafted to be
-          uniquely yours.
-        </h2>
+    <SectionContainer id="patterns">
+      <SectionHeading>
+        Various Patterns inspired by global ethnic artistry and crafted to be uniquely yours.
+      </SectionHeading>
 
-        {/* Category tabs */}
-        <nav aria-label="Categories" className="mt-6 w-full">
-          <ul className="flex w-full flex-wrap items-center text-sm md:text-base text-brand-ink/70">
-            {tabs.map((c, idx) => (
-              <li key={c} className="relative flex-1 min-w-0">
-                <a
-                  href="#"
-                  className={`block w-full px-2 py-2 text-center hover:text-brand-ink ${
-                    idx === 0 ? "text-brand-ink" : ""
-                  }`}
-                >
-                  {c}
-                </a>
-                {idx === 0 && (
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-2 left-1/2 h-[2px] w-full -translate-x-1/2 bg-brand-ink/50"
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <CategoryTabs categories={tabs} />
 
-        {/* Horizontal scrollable card grid */}
-        <div className="mt-12 overflow-x-auto">
-          <div className="flex gap-6 pb-4">
+        {/* Card grid - using 12 column system */}
+        <div className="mt-12 grid grid-cols-12 gap-6">
+          <div className="col-span-12 overflow-x-auto">
+            <div className="flex gap-6 pb-4">
             {cards.map((card) => (
               <div
                 key={card.id}
@@ -81,6 +60,7 @@ export function PatternsSection() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
         </div>
 
@@ -99,7 +79,6 @@ export function PatternsSection() {
             className="h-3 w-3 rounded-full bg-border"
           />
         </div>
-      </div>
-    </section>
+    </SectionContainer>
   );
 }

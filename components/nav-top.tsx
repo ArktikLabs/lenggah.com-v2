@@ -1,54 +1,69 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { useState } from "react";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import { BrandLogo } from "./brand-logo";
+import { SearchInput } from "./search-input";
 
 export function NavTop() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const categories = [
+    "Latest",
+    "Our Signatures",
+    "Chairs",
+    "Sofas",
+    "Puffs & Stools",
+    "Accessories",
+    "Create From the Scratch",
+  ];
+
   return (
-    <header className="w-full border-b border-[color:var(--color-border)] bg-brand-sand">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="flex h-20 items-center justify-between">
-          <Link
-            href="#"
-            className="text-sm md:text-base text-brand-ink/70 hover:opacity-80"
-          >
-            Our Services
-          </Link>
-          <BrandLogo />
-          <form className="relative w-44 md:w-64">
-            <label htmlFor="site-search" className="sr-only">
-              Search
-            </label>
-            <input
-              id="site-search"
-              placeholder="Search"
-              className="w-full rounded-full bg-secondary px-4 py-2 pr-10 text-sm text-brand-ink/80 placeholder:text-brand-ink/40 outline-none ring-1 ring-[color:var(--color-border)]"
-            />
-            <Search className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-ink/40" />
-          </form>
+    <header className="w-full border-b border-(--color-border) bg-brand-sand">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="grid grid-cols-12 gap-4 h-16 md:h-20 items-center">
+          {/* Burger menu button - visible on mobile only */}
+          <div className="col-span-2 md:col-span-3 flex items-center">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 text-brand-ink/70 hover:text-brand-ink"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+            <Link
+              href="#"
+              className="hidden lg:block text-sm lg:text-base text-brand-ink/70 hover:opacity-80 whitespace-nowrap"
+            >
+              Our Services
+            </Link>
+          </div>
+
+          {/* Logo */}
+          <div className="col-span-8 md:col-span-6 flex justify-center">
+            <BrandLogo />
+          </div>
+
+          {/* Search */}
+          <div className="col-span-2 md:col-span-3 flex justify-end">
+            <SearchInput />
+          </div>
         </div>
       </div>
-      {/* category strip */}
+
+      {/* Desktop category strip */}
       <nav
         aria-label="Categories"
-        className="border-t border-[color:var(--color-border)] bg-secondary"
+        className="hidden lg:block border-t border-(--color-border) bg-secondary"
       >
-        <div className="mx-auto max-w-6xl px-4">
-          <ul className="flex h-12 items-center justify-between text-sm md:text-base text-brand-ink/70">
-            {[
-              "Latest",
-              "Our Signatures",
-              "Chairs",
-              "Sofas",
-              "Puffs & Stools",
-              "Accessories",
-              "Create From the Scratch",
-            ].map((item) => (
+        <div className="mx-auto max-w-7xl px-4">
+          <ul className="flex h-12 items-center justify-between text-sm text-brand-ink/70">
+            {categories.map((item) => (
               <li key={item}>
                 <a
                   href="#"
-                  className="hover:text-brand-ink hover:underline underline-offset-4"
+                  className="hover:text-brand-ink hover:underline underline-offset-4 whitespace-nowrap"
                 >
                   {item}
                 </a>
@@ -57,6 +72,36 @@ export function NavTop() {
           </ul>
         </div>
       </nav>
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden border-t border-(--color-border) bg-secondary">
+          <nav className="mx-auto max-w-7xl px-4 py-4">
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  href="#"
+                  className="block text-base text-brand-ink/70 hover:text-brand-ink"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Our Services
+                </Link>
+              </li>
+              {categories.map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="block text-base text-brand-ink/70 hover:text-brand-ink"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

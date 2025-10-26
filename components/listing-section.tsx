@@ -2,6 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+import { SectionContainer } from "./section-container"
+import { SectionHeading } from "./section-heading"
+import { CategoryTabs } from "./category-tabs"
 
 const categories = ["Latest", "Our Signatures", "Chairs", "Sofas", "Puffs & Stools", "Accessories"]
 
@@ -13,39 +16,17 @@ const products = new Array(6).fill(0).map((_, i) => ({
 
 export function ListingSection() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
-        {/* Heading */}
-        <h2 className="font-headings text-pretty text-3xl leading-tight text-brand-light-teal/80 md:text-5xl">
-          Explore the range of chairs designed by Lenggah to match your taste, lifestyle, and space.
-        </h2>
+    <SectionContainer id="products">
+      <SectionHeading>
+        Explore the range of chairs designed by Lenggah to match your taste, lifestyle, and space.
+      </SectionHeading>
 
-        {/* Category tabs */}
-        <nav aria-label="Categories" className="mt-6 w-full">
-          <ul className="flex w-full flex-wrap items-center text-sm md:text-base text-brand-ink/70">
-            {categories.map((c, idx) => (
-              <li key={c} className="relative flex-1 min-w-0">
-                <a
-                  href="#"
-                  className={`block w-full px-2 py-2 text-center hover:text-brand-ink ${idx === 0 ? "text-brand-ink" : ""}`}
-                >
-                  {c}
-                </a>
-                {idx === 0 && (
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-2 left-1/2 h-[2px] w-full -translate-x-1/2 bg-brand-ink/50"
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <CategoryTabs categories={categories} />
 
         {/* Main content grid */}
-        <div className="mt-8 grid grid-cols-12 gap-10 md:grid-cols-[280px,1fr]">
-          {/* Sidebar filters */}
-          <aside aria-label="Filters" className="col-span-3 space-y-8">
+        <div className="mt-8 grid grid-cols-12 gap-6">
+          {/* Sidebar filters - 3 columns */}
+          <aside aria-label="Filters" className="col-span-12 md:col-span-3 space-y-8">
             <div>
               <h3 className="text-base font-medium text-brand-ink">Lenggah Signature Collection</h3>
               <p className="mt-2 text-sm leading-relaxed text-brand-ink/70">
@@ -64,7 +45,7 @@ export function ListingSection() {
               </Button>
             </div>
 
-            <div className="rounded-md border border-[color:var(--color-border)] p-4">
+            <div className="rounded-md border border-(--color-border) p-4">
               <p className="text-sm leading-relaxed text-brand-ink/70">
                 Looking for something else or want to refine a piece from our collection?
               </p>
@@ -77,8 +58,8 @@ export function ListingSection() {
             </div>
           </aside>
 
-          {/* Products area */}
-          <div className="col-span-9 space-y-6">
+          {/* Products area - 9 columns */}
+          <div className="col-span-12 md:col-span-9 space-y-6">
             {/* Top row */}
             <div className="flex items-center justify-between">
               <p className="text-sm text-brand-ink/80">
@@ -100,11 +81,11 @@ export function ListingSection() {
             </div>
 
             {/* Product grid */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-12 gap-6">
               {products.map((p) => (
                 <article
                   key={p.id}
-                  className="overflow-hidden rounded-md border border-[color:var(--color-border)] bg-card"
+                  className="col-span-12 sm:col-span-6 lg:col-span-4 overflow-hidden rounded-md border border-(--color-border) bg-card"
                 >
                   <div className="bg-brand-orange" style={{ aspectRatio: "4 / 3" }} aria-hidden="true" />
                   <div className="bg-secondary px-4 py-3">
@@ -123,7 +104,7 @@ export function ListingSection() {
               <button
                 type="button"
                 aria-label="Next page"
-                className="ml-2 grid h-6 w-6 place-items-center rounded-full border border-[color:var(--color-border)] text-brand-ink/60"
+                className="ml-2 grid h-6 w-6 place-items-center rounded-full border border-(--color-border) text-brand-ink/60"
               >
                 {/* simple chevron */}
                 <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -133,7 +114,6 @@ export function ListingSection() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Hidden reference image to comply with asset rules */}
       <img
@@ -141,7 +121,7 @@ export function ListingSection() {
         alt="Reference design used to recreate listing section"
         className="hidden"
       />
-    </section>
+    </SectionContainer>
   )
 }
 
