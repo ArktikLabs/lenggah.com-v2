@@ -12,7 +12,7 @@ export const customSeatContent = {
       "Custom your seat where every detail speaks your identity and story",
     subheading: "Start your custom chair journey and book a private session today",
     buttonText: "Contact Us",
-    buttonLink: "#contact",
+    buttonLink: "/#contact",
   },
 
   // Features section

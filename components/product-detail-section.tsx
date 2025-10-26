@@ -1,12 +1,13 @@
 import type React from "react";
+import Image from "next/image";
 import { Button } from "./ui/button";
-import { productListingContent } from "@/data/product-listing-content";
+import type { Product } from "@/data/product-listing-content";
 
-export function ProductDetailSection() {
-  // Using the first featured product as example
-  const product =
-    productListingContent.products.find((p) => p.featured) ||
-    productListingContent.products[0];
+interface ProductDetailSectionProps {
+  product: Product;
+}
+
+export function ProductDetailSection({ product }: ProductDetailSectionProps) {
   return (
     <section className="bg-white">
       {/* White/sand expertise content panel */}
@@ -14,20 +15,30 @@ export function ProductDetailSection() {
         <div className="mx-auto w-full max-w-6xl">
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-full md:col-span-8 grid grid-cols-1 gap-6 md:grid-cols-[320px,1fr]">
-              <div
-                className="bg-brand-orange"
-                style={{ minHeight: "400px" }}
-                aria-hidden="true"
-              />
+              {/* Main product image */}
+              <div className="relative" style={{ minHeight: "400px" }}>
+                <Image
+                  src={product.images.main}
+                  alt={product.name}
+                  fill
+                  className="object-cover rounded-lg"
+                />
+              </div>
 
               {/* Photo Grid */}
               <div className="grid grid-cols-2 gap-4 md:grid-cols-8 md:gap-3">
-                {Array.from({ length: 8 }).map((_, i) => (
+                {product.images.gallery.map((imageUrl, i) => (
                   <div
                     key={i}
-                    className="aspect-square bg-brand-orange"
-                    aria-label={`Product photo ${i + 1}`}
-                  />
+                    className="relative aspect-square rounded-md overflow-hidden"
+                  >
+                    <Image
+                      src={imageUrl}
+                      alt={`${product.name} - view ${i + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 ))}
               </div>
             </div>
@@ -36,10 +47,10 @@ export function ProductDetailSection() {
               {/* Main information */}
               <div className="mb-6">
                 <h2 className="font-headings text-pretty text-brand-light-teal/80 text-2xl font-semibold">
-                  Lorem ipsum dolor sit amet ipsum dolor sit amet
+                  {product.name}
                 </h2>
                 <p className="text-pretty text-foreground text-xl mt-4 font-semibold">
-                  Start from Rp 9.999.999
+                  {product.price.formatted}
                 </p>
               </div>
 
@@ -51,17 +62,29 @@ export function ProductDetailSection() {
                 <div>
                   {/* Photo Grid */}
                   <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-4 mt-4 mb-4">
-                    {Array.from({ length: 3 }).map((_, i) => (
+                    {product.images.gallery.slice(0, 3).map((imageUrl, i) => (
                       <div
                         key={i}
-                        className="aspect-square bg-brand-orange"
-                        aria-label={`Product photo ${i + 1}`}
-                      />
+                        className="relative aspect-square rounded-md overflow-hidden"
+                      >
+                        <Image
+                          src={imageUrl}
+                          alt={`${product.name} - variation ${i + 1}`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                     ))}
                   </div>
-                  <Button variant="primary" size="default" className="w-full">
-                    Shop on Shopee
-                  </Button>
+                  <a
+                    href="https://shopee.co.id/lenggah.works"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="primary" size="default" className="w-full">
+                      Shop on Shopee
+                    </Button>
+                  </a>
                 </div>
                 <p className="text-pretty text-foreground/80 mt-4">
                   This item is custom and pre order within 2-4 Weeks. The
@@ -76,49 +99,39 @@ export function ProductDetailSection() {
                   Product Description
                 </h2>
                 <p className="text-pretty text-foreground/80 mt-4">
-                  Classic comfort. Timeless style. This effortless swivel chair
-                  brings the best of both worlds together, with your choice of
-                  bold prints or rich fabrics for a look that's both modern and
-                  unmistakably original.
-                  <span className="mt-6 block font-bold">
-                    Materials Construction
-                  </span>
-                  Plywood Frame
-                  <br />2 inch Tubular Frame
-                  <span className="mt-6 block font-bold">Materials Fabric</span>
-                  Pattern: xxxxxx (95% Polyester, 5% Linen)
-                  <br />
-                  Others: xxxxxx (95% Polyester, 5% Linen)
+                  {product.description}
+                  {product.materials && (
+                    <>
+                      <span className="mt-6 block font-bold">Materials</span>
+                      {product.materials.join(", ")}
+                    </>
+                  )}
                 </p>
               </div>
 
               {/* Product Dimension */}
-              <div className="mt-6 mb-6 border-t border-gray-400">
-                <h2 className="mt-4 font-headings text-pretty text-brand-light-teal/80 text-2xl font-semibold">
-                  Product Dimension
-                </h2>
-                <p className="text-pretty text-foreground/80 mt-4">
-                  Classic comfort. Timeless style. This effortless swivel chair
-                  brings the best of both worlds together, with your choice of
-                  bold prints or rich fabrics for a look that's both modern and
-                  unmistakably original.
-                  <span className="mt-6 block font-bold">
-                    General Dimensions
-                  </span>
-                  35.5"W x 33"D x 29.5"H
-                  <span className="mt-6 block font-bold">Weight</span>
-                  26 lbs
-                  <span className="mt-6 block font-bold">Weight Limit</span>
-                  300 lbs
-                </p>
-              </div>
+              {product.dimensions && (
+                <div className="mt-6 mb-6 border-t border-gray-400">
+                  <h2 className="mt-4 font-headings text-pretty text-brand-light-teal/80 text-2xl font-semibold">
+                    Product Dimension
+                  </h2>
+                  <p className="text-pretty text-foreground/80 mt-4">
+                    <span className="block font-bold">General Dimensions</span>
+                    {product.dimensions.width}{product.dimensions.unit} x {product.dimensions.depth}{product.dimensions.unit} x {product.dimensions.height}{product.dimensions.unit}
+                    <br />
+                    (Width x Depth x Height)
+                  </p>
+                </div>
+              )}
 
               {/* Contact */}
               <div className="mt-6 mb-6 border-t border-gray-400">
                 <p className="text-pretty text-foreground/80 mt-4 text-lg">
                   Looking for something else or want to refine a piece from our
                   collection?
-                  <div className="mt-4">
+                </p>
+                <div className="mt-4">
+                  <a href="/#contact">
                     <Button
                       variant="outline"
                       colorScheme="foreground"
@@ -126,8 +139,8 @@ export function ProductDetailSection() {
                     >
                       Contact Us
                     </Button>
-                  </div>
-                </p>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
