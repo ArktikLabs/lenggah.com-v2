@@ -90,8 +90,18 @@ export function Footer() {
 
       {/* Copyright Bar */}
       <div className="flex items-center justify-between bg-white px-8 py-4 text-xs text-foreground/60 md:px-16">
-        <p>© 2025 Lenggah. All rights reserved. Developed by Artik</p>
-        <p>Developed by Artik</p>
+        <p>© 2025 Lenggah. All rights reserved.</p>
+        <p>
+          Developed by{" "}
+          <a
+            href="https://www.arktik.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors underline"
+          >
+            Arktik
+          </a>
+        </p>
       </div>
     </>
   );

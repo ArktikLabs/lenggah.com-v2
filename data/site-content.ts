@@ -26,23 +26,6 @@ export const siteContent = {
     autoSlideInterval: 5000, // milliseconds
   },
 
-  // Expertise Section
-  expertise: {
-    heading:
-      "Your creativity meets our expertise. Lenggah transforms ideas into chairs that truly yours.",
-    categories: [
-      "Our Expertise",
-      "Expert Design Advice",
-      "Product Guarantee",
-      "White Glove Delivery",
-    ],
-    content: {
-      title: "12 years of experience",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-  },
-
   // Instagram Section
   instagram: {
     heading: "@lenggah.works\nFollow Us on Instagram",
@@ -95,7 +78,7 @@ export const siteContent = {
         phone: "+62 813-8628-8099",
         email: "hello@lenggah.com",
         address:
-          "Jl. Munggang Gg. H. Guntong Jl. Munggang Gg. H. Guntong RT 10/RW 4, Kel. Balekambang, Jakarta Timur 13530",
+          "Jl. Munggang Gg. H. Guntong RT 10/RW 4, Kel. Balekambang, Jakarta Timur 13530",
       },
     },
     copyright: "© 2025 Lenggah. All rights reserved.",
