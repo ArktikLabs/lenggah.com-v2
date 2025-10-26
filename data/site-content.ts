@@ -26,20 +26,6 @@ export const siteContent = {
     autoSlideInterval: 5000, // milliseconds
   },
 
-  // Patterns Section
-  patterns: {
-    heading:
-      "Various Patterns inspired by global ethnic artistry and crafted to be uniquely yours.",
-    categories: [
-      "Abstract",
-      "Geometric",
-      "Nordic",
-      "Japanese",
-      "Aztec",
-      "Indonesia",
-    ],
-  },
-
   // Journey Section
   journey: {
     heading: "Discover your journey with Lenggah. Explore what fits you best.",

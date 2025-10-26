@@ -1,84 +1,101 @@
-import { ChevronRight } from "lucide-react";
-import { SectionContainer } from "./section-container";
-import { SectionHeading } from "./section-heading";
-import { CategoryTabs } from "./category-tabs";
+"use client"
+
+import { useState } from "react"
+import { ChevronRight } from "lucide-react"
+import { SectionContainer } from "./section-container"
+import { SectionHeading } from "./section-heading"
+import { CategoryTabs } from "./category-tabs"
+import { PaginationDots } from "./pagination-dots"
+import { patternListingContent } from "@/data/pattern-listing-content"
 
 export function PatternsSection() {
-  const tabs = [
-    "Abstract",
-    "Geometric",
-    "Nordic",
-    "Japanese",
-    "Aztec",
-    "Indonesia",
-  ];
+  const [selectedCategory, setSelectedCategory] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const cards = [
-    { id: 1, title: "Lorem ipsum dolor sit amet" },
-    { id: 2, title: "Lorem ipsum dolor sit amet" },
-    { id: 3, title: "Lorem ipsum dolor sit amet" },
-    { id: 4, title: "Lorem ipsum dolor sit amet" },
-    { id: 5, title: "Lorem ipsum dolor sit amet" },
-    { id: 6, title: "Lorem ipsum dolor sit amet", hasChevron: true },
-  ];
+  const { itemsPerPage } = patternListingContent.pagination
+
+  // Filter patterns by category
+  const filteredPatterns = patternListingContent.patterns.filter(
+    (pattern) =>
+      pattern.category === patternListingContent.categories[selectedCategory]
+  )
+
+  // Calculate pagination
+  const totalPatterns = filteredPatterns.length
+  const totalPages = Math.ceil(totalPatterns / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const displayedPatterns = filteredPatterns.slice(startIndex, endIndex)
 
   return (
     <SectionContainer id="patterns">
       <SectionHeading>
-        Various Patterns inspired by global ethnic artistry and crafted to be uniquely yours.
+        {patternListingContent.heading}
       </SectionHeading>
 
-      <CategoryTabs categories={tabs} />
+      <CategoryTabs
+        categories={patternListingContent.categories}
+        activeIndex={selectedCategory}
+        onCategoryClick={(index) => {
+          setSelectedCategory(index)
+          setCurrentPage(1)
+        }}
+      />
 
         {/* Card grid - using 12 column system */}
-        <div className="mt-12 grid grid-cols-12 gap-6">
-          <div className="col-span-12 overflow-x-auto">
-            <div className="flex gap-6 pb-4">
-            {cards.map((card) => (
+        <div className="mt-12 relative">
+          {/* Previous button */}
+          {currentPage > 1 && (
+            <button
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+              aria-label="Previous page"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-20 z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-background bg-background/95 text-foreground shadow-md transition-transform hover:scale-105"
+            >
+              <ChevronRight className="h-5 w-5 rotate-180" />
+            </button>
+          )}
+
+          {/* Next button */}
+          {currentPage < totalPages && (
+            <button
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+              aria-label="Next page"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-20 z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-background bg-background/95 text-foreground shadow-md transition-transform hover:scale-105"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          )}
+
+          <div className="grid grid-cols-12 gap-6 overflow-hidden">
+            {displayedPatterns.map((pattern, index) => (
               <div
-                key={card.id}
-                className="relative shrink-0 overflow-hidden rounded-sm bg-card shadow-sm"
-                style={{ width: "280px" }}
+                key={`${pattern.id}-${currentPage}`}
+                className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-2 relative overflow-hidden rounded-sm bg-secondary shadow-sm animate-in slide-in-from-right duration-500"
               >
                 {/* Image placeholder */}
-                <div className="relative h-64 bg-brand-orange">
-                  {card.hasChevron && (
-                    <button
-                      aria-label="Next"
-                      className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-background bg-background/95 text-foreground shadow-md transition-transform hover:scale-105"
-                    >
-                      <ChevronRight className="h-5 w-5" />
-                    </button>
-                  )}
-                </div>
+                <div className="relative aspect-square bg-brand-orange" />
 
                 {/* Card footer */}
-                <div className="bg-secondary/40 p-4">
+                <div className="p-4">
                   <p className="text-sm leading-relaxed text-foreground">
-                    {card.title}
+                    {pattern.description}
                   </p>
                 </div>
               </div>
             ))}
-            </div>
           </div>
         </div>
 
         {/* Pagination dots */}
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <button
-            aria-label="Page 1"
-            className="h-3 w-3 rounded-full bg-accent"
-          />
-          <button
-            aria-label="Page 2"
-            className="h-3 w-3 rounded-full bg-border"
-          />
-          <button
-            aria-label="Page 3"
-            className="h-3 w-3 rounded-full bg-border"
-          />
-        </div>
+        <PaginationDots
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          variant="filled"
+          color="orange"
+          showNavButtons={false}
+          className="mt-8"
+        />
     </SectionContainer>
   );
 }
