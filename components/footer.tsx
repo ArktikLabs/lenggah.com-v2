@@ -79,8 +79,8 @@ export function Footer() {
                   </a>
                 </li>
                 <li className="text-xs leading-relaxed">
-                  Jl. Munggang Gg. H. Guntong Jl. Munggang Gg. H. Guntong RT
-                  10/RW 4, Kel. Balekambang, Jakarta Timur 13530
+                  Jl. Munggang Gg. H. Guntong RT 10/RW 4, Kel. Balekambang,
+                  Jakarta Timur 13530
                 </li>
               </ul>
             </div>
