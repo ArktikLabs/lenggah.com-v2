@@ -26,30 +26,6 @@ export const siteContent = {
     autoSlideInterval: 5000, // milliseconds
   },
 
-  // Journey Section
-  journey: {
-    heading: "Discover your journey with Lenggah. Explore what fits you best.",
-    categories: [
-      "Create From Your Scratch",
-      "Customise Our Signature",
-      "Reupholster Your Seat",
-    ],
-    steps: [
-      {
-        title: "how to start designing",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      },
-      {
-        title: "how to start designing",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      },
-      {
-        title: "how to start designing",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      },
-    ],
-  },
-
   // Custom Seat Section
   customSeat: {
     heading:
