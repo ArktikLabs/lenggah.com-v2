@@ -2,13 +2,14 @@
 
 import { useState, useMemo } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { SectionContainer } from "./section-container"
 import { SectionHeading } from "./section-heading"
 import { CategoryTabs } from "./category-tabs"
 import { PaginationDots } from "./pagination-dots"
-import { productListingContent, type Product } from "@/data/product-listing-content"
+import { productListingContent } from "@/data/product-listing-content"
 
 export function ListingSection() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -222,7 +223,14 @@ export function ListingSection() {
                   className="col-span-12 sm:col-span-6 lg:col-span-4"
                 >
                   <article className="overflow-hidden rounded-md border border-(--color-border) bg-card animate-in slide-in-from-right duration-500 hover:shadow-lg transition-shadow cursor-pointer">
-                    <div className="bg-brand-orange" style={{ aspectRatio: "4 / 3" }} aria-hidden="true" />
+                    <div className="relative bg-secondary" style={{ aspectRatio: "4 / 3" }}>
+                      <Image
+                        src={product.images.main}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                     <div className="bg-secondary px-4 py-3">
                       <h4 className="line-clamp-2 text-sm text-brand-ink/80">{product.name}</h4>
                       <p className="mt-2 text-xs text-brand-ink/60">{product.price.formatted}</p>
@@ -243,13 +251,6 @@ export function ListingSection() {
             />
           </div>
         </div>
-
-      {/* Hidden reference image to comply with asset rules */}
-      <img
-        src="/images/reference/listing-reference.png"
-        alt="Reference design used to recreate listing section"
-        className="hidden"
-      />
     </SectionContainer>
   )
 }

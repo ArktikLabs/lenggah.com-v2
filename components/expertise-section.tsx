@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import type React from "react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeading } from "./section-heading";
 import { CategoryTabs } from "./category-tabs";
-import { PaginationDots } from "./pagination-dots";
 import { expertiseContent } from "@/data/expertise-content";
 
 export function ExpertiseSection() {
@@ -17,9 +16,7 @@ export function ExpertiseSection() {
 
   return (
     <SectionContainer id="expertise">
-      <SectionHeading>
-        {expertiseContent.heading}
-      </SectionHeading>
+      <SectionHeading>{expertiseContent.heading}</SectionHeading>
 
       <CategoryTabs
         categories={expertiseContent.categories}
@@ -29,56 +26,46 @@ export function ExpertiseSection() {
         }}
       />
 
-          {/* Content card (horizontal layout) */}
-          <div
-            key={`expertise-${selectedCategory}`}
-            className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-10 animate-in slide-in-from-right duration-500"
-          >
-            {/* Left: tall orange thumbnail - 3 columns */}
-            <div
-              className="md:col-span-3 bg-brand-orange rounded-lg"
-              style={{ minHeight: "400px" }}
-              aria-hidden="true"
-            />
-
-            {/* Right: text column - 7 columns */}
-            <div className="md:col-span-7 space-y-4">
-              <h3 className="text-2xl font-medium text-brand-ink md:text-3xl">
-                {currentContent.title}
-              </h3>
-              {currentContent.description.map((paragraph, index) => (
-                <p key={index} className="text-sm leading-relaxed text-brand-ink/70 md:text-base">
-                  {paragraph}
-                </p>
-              ))}
-              {currentContent.link && (
-                <a
-                  href={currentContent.link.url}
-                  className="inline-block text-sm text-brand-ink/60 underline hover:text-brand-ink"
-                >
-                  {currentContent.link.text}
-                </a>
-              )}
-            </div>
+      {/* Content card (horizontal layout) */}
+      <div
+        key={`expertise-${selectedCategory}`}
+        className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-10 animate-in slide-in-from-right duration-500"
+      >
+        {/* Left: image thumbnail - 3 columns with fixed aspect ratio */}
+        <div className="md:col-span-3 rounded-lg overflow-hidden">
+          <div className="relative w-full aspect-[3/4]">
+            {currentContent.imageUrl && (
+              <Image
+                src={currentContent.imageUrl}
+                alt={currentContent.title}
+                fill
+                className="object-cover"
+              />
+            )}
           </div>
+        </div>
+        {/* Orange thumbnail - commented out */}
+        {/* <div
+          className="md:col-span-3 bg-brand-orange rounded-lg"
+          style={{ minHeight: "400px" }}
+          aria-hidden="true"
+        /> */}
 
-          {/* Pagination dots */}
-          <PaginationDots
-            totalPages={expertiseContent.content.length}
-            currentPage={selectedCategory + 1}
-            onPageChange={(page) => setSelectedCategory(page - 1)}
-            variant="filled"
-            color="orange"
-            showNavButtons={false}
-            className="mt-10"
-          />
-
-      {/* Hidden reference image per asset rules */}
-      <img
-        src="/images/reference/expertise-reference.png"
-        alt="Reference design used to recreate expertise section"
-        className="hidden"
-      />
+        {/* Right: text column - 7 columns */}
+        <div className="md:col-span-7 space-y-4">
+          <h3 className="text-2xl font-medium text-brand-ink md:text-3xl">
+            {currentContent.title}
+          </h3>
+          {currentContent.description.map((paragraph, index) => (
+            <p
+              key={index}
+              className="text-sm leading-relaxed text-brand-ink/70 md:text-base whitespace-pre-line"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </div>
     </SectionContainer>
   );
 }

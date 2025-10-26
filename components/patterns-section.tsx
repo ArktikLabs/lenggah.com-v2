@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { SectionContainer } from "./section-container"
 import { SectionHeading } from "./section-heading"
@@ -72,13 +73,20 @@ export function PatternsSection() {
           )}
 
           <div className="grid grid-cols-12 gap-6 overflow-hidden">
-            {displayedPatterns.map((pattern, index) => (
+            {displayedPatterns.map((pattern) => (
               <div
                 key={`${pattern.id}-${currentPage}`}
                 className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-2 relative overflow-hidden rounded-sm bg-secondary shadow-sm animate-in slide-in-from-right duration-500"
               >
-                {/* Image placeholder */}
-                <div className="relative aspect-square bg-brand-orange" />
+                {/* Pattern Image */}
+                <div className="relative aspect-square">
+                  <Image
+                    src={pattern.images.main}
+                    alt={pattern.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
 
                 {/* Card footer */}
                 <div className="p-4">

@@ -1,5 +1,7 @@
 import type React from "react";
+import Image from "next/image";
 import { Button } from "./ui/button";
+import { productListingContent } from "@/data/product-listing-content";
 
 const tabs = [
   "Our Expertise",
@@ -9,6 +11,8 @@ const tabs = [
 ];
 
 export function ProductDetailSection() {
+  // Using the first featured product as example
+  const product = productListingContent.products.find(p => p.featured) || productListingContent.products[0];
   return (
     <section className="bg-white">
       {/* White/sand expertise content panel */}

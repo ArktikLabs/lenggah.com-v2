@@ -1,28 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeading } from "./section-heading";
 import { CategoryTabs } from "./category-tabs";
-import { PaginationDots } from "./pagination-dots";
 import { journeyContent } from "@/data/journey-content";
 
 export function JourneySection() {
   const [selectedCategory, setSelectedCategory] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const { itemsPerPage } = journeyContent.pagination;
 
   // Get steps for selected category
   const currentJourney = journeyContent.journeys[selectedCategory];
   const steps = currentJourney.steps;
-
-  // Calculate pagination
-  const totalSteps = steps.length;
-  const totalPages = Math.ceil(totalSteps / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const displayedSteps = steps.slice(startIndex, endIndex);
 
   return (
     <SectionContainer id="journey">
@@ -33,50 +23,49 @@ export function JourneySection() {
       <CategoryTabs
         categories={journeyContent.categories}
         activeIndex={selectedCategory}
-        onCategoryClick={(index) => {
-          setSelectedCategory(index);
-          setCurrentPage(1);
-        }}
+        onCategoryClick={setSelectedCategory}
       />
 
         {/* List items */}
         <div className="mt-8 space-y-8 md:space-y-10">
-          {displayedSteps.map((step) => (
+          {steps.map((step) => (
             <article
-              key={`${step.id}-${currentPage}`}
-              className="rounded-lg border border-black/5 bg-background shadow-sm animate-in slide-in-from-right duration-500"
+              key={step.id}
+              className="rounded-lg border border-black/5 bg-background shadow-sm h-[400px]"
             >
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr]">
-                {/* Orange media block */}
-                <div
-                  className="min-h-48 md:min-h-56 lg:min-h-64 rounded-t-lg md:rounded-l-lg md:rounded-tr-none"
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] h-full">
+                {/* Image block */}
+                <div className="min-h-48 md:min-h-full rounded-t-lg md:rounded-l-lg md:rounded-tr-none relative overflow-hidden">
+                  {step.imageUrl && (
+                    <Image
+                      src={step.imageUrl}
+                      alt={step.title}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+                {/* Orange media block - commented out */}
+                {/* <div
+                  className="min-h-48 md:min-h-full rounded-t-lg md:rounded-l-lg md:rounded-tr-none"
                   style={{ backgroundColor: "var(--brand-accent, #EA8B1A)" }}
                   aria-hidden="true"
-                />
+                /> */}
                 {/* Copy */}
-                <div className="p-6 md:p-8">
-                  <h3 className="text-lg md:text-xl font-medium text-foreground/90">
+                <div className="flex flex-col p-6 md:p-8 overflow-hidden">
+                  <h3 className="text-lg md:text-xl font-medium text-foreground/90 shrink-0">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-foreground/70">
-                    {step.body}
-                  </p>
+                  <div className="mt-3 flex-1 overflow-y-auto">
+                    <p className="text-sm leading-6 text-foreground/70 whitespace-pre-line">
+                      {step.body}
+                    </p>
+                  </div>
                 </div>
               </div>
             </article>
           ))}
         </div>
-
-        {/* Pagination dots */}
-        <PaginationDots
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-          variant="filled"
-          color="orange"
-          showNavButtons={false}
-          className="mt-10"
-        />
     </SectionContainer>
   );
 }

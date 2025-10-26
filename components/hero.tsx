@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { PaginationDots } from "@/components/pagination-dots";
 import { siteContent } from "@/data/site-content";
@@ -66,16 +67,18 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right: solid orange panel - 6 columns */}
-        <div className="col-span-10 md:col-span-6 bg-brand-orange" aria-hidden="true" />
+        {/* Right: image panel - 6 columns */}
+        <div className="col-span-10 md:col-span-6 relative overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80"
+            alt="Modern living room interior"
+            width={1200}
+            height={800}
+            className="h-full w-full object-cover"
+            priority
+          />
+        </div>
       </div>
-
-      {/* Hidden reference image to comply with asset rules */}
-      <img
-        src="/images/reference/landing-reference.png"
-        alt="Reference design used to recreate this UI"
-        className="hidden"
-      />
     </section>
   );
 }

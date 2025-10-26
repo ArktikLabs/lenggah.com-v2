@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "./ui/button";
+import { siteContent } from "@/data/site-content";
 
 export function InstagramSection() {
   return (
@@ -9,10 +10,8 @@ export function InstagramSection() {
         {/* Header */}
         <div className="mb-12 grid grid-cols-12 gap-4 items-center">
           <div className="col-span-12 md:col-span-8">
-            <h2 className="font-headings text-pretty text-3xl leading-tight text-brand-light-teal/80 md:text-5xl">
-              @lenggah.works
-              <br className="hidden md:block" />
-              Follow Us on Instagram
+            <h2 className="font-headings text-pretty text-3xl leading-tight text-brand-light-teal/80 md:text-5xl whitespace-pre-line">
+              {siteContent.instagram.heading}
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 flex justify-start md:justify-end">
