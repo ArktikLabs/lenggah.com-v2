@@ -26,20 +26,6 @@ export const siteContent = {
     autoSlideInterval: 5000, // milliseconds
   },
 
-  // Custom Seat Section
-  customSeat: {
-    heading:
-      "Custom your seat where every detail speaks your identity and story",
-    subheading:
-      "Start your custom chair journey and book a private session today",
-    features: [
-      { label: "12 Years of Trust" },
-      { label: "Expert Design Advice" },
-      { label: "Product Guarantee" },
-      { label: "White Glove Delivery" },
-    ],
-  },
-
   // Expertise Section
   expertise: {
     heading:
