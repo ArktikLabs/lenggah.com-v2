@@ -7,13 +7,14 @@ import { productListingContent } from "@/data/product-listing-content";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function Page({ params }: PageProps) {
-  const product = productListingContent.products.find((p) => p.id === params.id);
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  const product = productListingContent.products.find((p) => p.id === id);
 
   if (!product) {
     notFound();
