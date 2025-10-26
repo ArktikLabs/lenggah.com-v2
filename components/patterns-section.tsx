@@ -72,11 +72,11 @@ export function PatternsSection() {
             </Button>
           )}
 
-          <div className="grid grid-cols-12 gap-6 overflow-hidden">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 overflow-hidden">
             {displayedPatterns.map((pattern) => (
               <div
                 key={`${pattern.id}-${currentPage}`}
-                className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-2 relative overflow-hidden rounded-sm bg-secondary shadow-sm animate-in slide-in-from-right duration-500"
+                className="relative overflow-hidden rounded-sm bg-secondary shadow-sm animate-in slide-in-from-right duration-500"
               >
                 {/* Pattern Image */}
                 <div className="relative aspect-square">
@@ -89,8 +89,8 @@ export function PatternsSection() {
                 </div>
 
                 {/* Card footer */}
-                <div className="p-4">
-                  <p className="text-sm leading-relaxed text-foreground">
+                <div className="p-2 md:p-4">
+                  <p className="text-xs md:text-sm leading-relaxed text-foreground line-clamp-3">
                     {pattern.description}
                   </p>
                 </div>

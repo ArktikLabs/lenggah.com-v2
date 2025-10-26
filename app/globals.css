@@ -107,3 +107,15 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* Horizontal scroll styling */
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .overflow-x-auto {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}

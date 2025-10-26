@@ -215,12 +215,11 @@ export function ListingSection() {
             </div>
 
             {/* Product grid */}
-            <div className="grid grid-cols-12 gap-6 overflow-hidden">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 overflow-hidden">
               {displayedProducts.map((product) => (
                 <Link
                   key={`${product.id}-${currentPage}`}
                   href={`/products/${product.id}`}
-                  className="col-span-12 sm:col-span-6 lg:col-span-4"
                 >
                   <article className="overflow-hidden rounded-md border border-(--color-border) bg-card animate-in slide-in-from-right duration-500 hover:shadow-lg transition-shadow cursor-pointer">
                     <div className="relative bg-secondary" style={{ aspectRatio: "4 / 3" }}>
@@ -231,9 +230,9 @@ export function ListingSection() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="bg-secondary px-4 py-3">
-                      <h4 className="line-clamp-2 text-sm text-brand-ink/80">{product.name}</h4>
-                      <p className="mt-2 text-xs text-brand-ink/60">{product.price.formatted}</p>
+                    <div className="bg-secondary px-3 py-2 md:px-4 md:py-3">
+                      <h4 className="line-clamp-2 text-xs md:text-sm text-brand-ink/80">{product.name}</h4>
+                      <p className="mt-1 md:mt-2 text-[10px] md:text-xs text-brand-ink/60">{product.price.formatted}</p>
                     </div>
                   </article>
                 </Link>

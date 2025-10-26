@@ -16,7 +16,41 @@ export function CategoryTabs({
 }: CategoryTabsProps) {
   return (
     <nav aria-label="Categories" className="mt-8 w-full">
-      <ul className="grid grid-cols-12 gap-2 items-center text-sm md:text-base text-brand-ink/70">
+      {/* Mobile: Horizontal scroll */}
+      <div className="md:hidden overflow-x-auto -mx-4 px-4">
+        <ul className="flex gap-2 items-center text-sm text-brand-ink/70 pb-2">
+          {categories.map((category, idx) => (
+            <li
+              key={category}
+              className="relative text-center flex-shrink-0"
+            >
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onCategoryClick?.(idx);
+                }}
+                className={cn(
+                  "whitespace-nowrap",
+                  idx === activeIndex ? "font-medium" : ""
+                )}
+              >
+                {category}
+              </Button>
+              {idx === activeIndex && (
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-1 left-1/2 h-[2px] w-3/4 -translate-x-1/2 bg-brand-ink/50"
+                />
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Desktop: Grid layout */}
+      <ul className="hidden md:grid grid-cols-12 gap-2 items-center text-sm md:text-base text-brand-ink/70">
         {categories.map((category, idx) => (
           <li
             key={category}

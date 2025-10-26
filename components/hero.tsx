@@ -21,23 +21,35 @@ export function Hero() {
 
   return (
     <section id="hero" className="w-full">
-      <div className="grid min-h-[520px] grid-cols-10">
-        {/* Left: dark teal panel with text - 4 columns */}
-        <div className="col-span-10 md:col-span-4 bg-brand-teal text-[color:var(--primary-foreground)]">
-          <div className="mx-auto flex h-full max-w-xl flex-col justify-center gap-6 px-6 py-12 md:px-10 text-center">
-            <div className="min-h-[180px] md:min-h-[220px] flex flex-col justify-center overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-10">
+        {/* Image panel - shown first on mobile, 6 columns on desktop */}
+        <div className="relative h-[300px] md:h-auto md:min-h-[520px] md:col-span-6 md:order-2 overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80"
+            alt="Modern living room interior"
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 60vw"
+          />
+        </div>
+
+        {/* Text panel - shown second on mobile, 4 columns on desktop */}
+        <div className="bg-brand-teal text-[color:var(--primary-foreground)] md:col-span-4 md:order-1">
+          <div className="mx-auto flex h-full max-w-xl flex-col justify-center gap-4 md:gap-6 px-6 py-8 md:py-12 md:px-10 text-center">
+            <div className="flex flex-col justify-center overflow-hidden">
               <h1
                 key={`title-${activeSlide}`}
-                className="font-headings text-balance text-4xl leading-tight md:text-6xl whitespace-pre-line animate-in slide-in-from-right duration-700"
+                className="font-headings text-balance text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight whitespace-pre-line animate-in slide-in-from-right duration-700"
               >
                 {slides[activeSlide].title}
               </h1>
             </div>
 
-            <div className="min-h-[100px] flex items-center justify-center overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden">
               <p
                 key={`desc-${activeSlide}`}
-                className="max-w-md text-sm leading-relaxed text-white/80 animate-in slide-in-from-right duration-700"
+                className="max-w-md text-xs sm:text-sm leading-relaxed text-white/80 animate-in slide-in-from-right duration-700"
               >
                 {slides[activeSlide].description}
               </p>
@@ -62,21 +74,9 @@ export function Hero() {
               onPageChange={(page) => setActiveSlide(page - 1)}
               variant="outlined"
               color="sand"
-              className="mt-4"
+              className="mt-2 md:mt-4"
             />
           </div>
-        </div>
-
-        {/* Right: image panel - 6 columns */}
-        <div className="col-span-10 md:col-span-6 relative overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80"
-            alt="Modern living room interior"
-            width={1200}
-            height={800}
-            className="h-full w-full object-cover"
-            priority
-          />
         </div>
       </div>
     </section>
