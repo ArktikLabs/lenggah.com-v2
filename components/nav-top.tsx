@@ -6,19 +6,12 @@ import { Menu, X } from "lucide-react";
 import { BrandLogo } from "./brand-logo";
 import { SearchInput } from "./search-input";
 import { Button } from "./ui/button";
+import { CATEGORIES } from "@/data/constants";
 
 export function NavTop() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const categories = [
-    "Latest",
-    "Our Signatures",
-    "Chairs",
-    "Sofas",
-    "Puffs & Stools",
-    "Accessories",
-    "Create From the Scratch",
-  ];
+  const categories = [...CATEGORIES, "Create From the Scratch"];
 
   return (
     <header className="w-full border-b border-(--color-border) bg-brand-sand">

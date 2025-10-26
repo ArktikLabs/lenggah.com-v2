@@ -16,15 +16,57 @@ export function ConsultationForm() {
     budget: "",
     projectDescription: "",
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }))
+    }
+  }
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required"
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email"
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone/WhatsApp is required"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+
+    if (!validateForm()) {
+      return
+    }
+
+    // TODO: Implement form submission (e.g., send to API or email service)
+    alert("Thank you for your consultation request! We'll contact you soon.")
+
+    // Reset form
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      serviceType: "",
+      budget: "",
+      projectDescription: "",
+    })
   }
 
   return (
@@ -55,26 +97,36 @@ export function ConsultationForm() {
               <h3 className="mb-8 text-xl font-semibold text-foreground">The Essentials</h3>
               <div className="space-y-6">
                 <div>
-                  <label className="mb-2 block text-sm text-foreground/70">First Name</label>
+                  <label className="mb-2 block text-sm text-foreground/70">First Name *</label>
                   <input
                     type="text"
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="w-full border-b border-foreground/20 bg-transparent px-0 py-2 text-foreground placeholder-foreground/40 focus:border-foreground focus:outline-none"
+                    className={`w-full border-b bg-transparent px-0 py-2 text-foreground placeholder-foreground/40 focus:border-foreground focus:outline-none ${errors.firstName ? "border-red-500" : "border-foreground/20"}`}
                     placeholder=""
+                    aria-invalid={!!errors.firstName}
+                    aria-describedby={errors.firstName ? "firstName-error" : undefined}
                   />
+                  {errors.firstName && (
+                    <p id="firstName-error" className="mt-1 text-xs text-red-500">{errors.firstName}</p>
+                  )}
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm text-foreground/70">Email Address</label>
+                  <label className="mb-2 block text-sm text-foreground/70">Email Address *</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full border-b border-foreground/20 bg-transparent px-0 py-2 text-foreground placeholder-foreground/40 focus:border-foreground focus:outline-none"
+                    className={`w-full border-b bg-transparent px-0 py-2 text-foreground placeholder-foreground/40 focus:border-foreground focus:outline-none ${errors.email ? "border-red-500" : "border-foreground/20"}`}
                     placeholder=""
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                   />
+                  {errors.email && (
+                    <p id="email-error" className="mt-1 text-xs text-red-500">{errors.email}</p>
+                  )}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm text-foreground/70">Address</label>
@@ -113,9 +165,14 @@ export function ConsultationForm() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full border-b border-foreground/20 bg-transparent px-0 py-2 text-foreground placeholder-foreground/40 focus:border-foreground focus:outline-none"
+                      className={`w-full border-b bg-transparent px-0 py-2 text-foreground placeholder-foreground/40 focus:border-foreground focus:outline-none ${errors.phone ? "border-red-500" : "border-foreground/20"}`}
                       placeholder=""
+                      aria-invalid={!!errors.phone}
+                      aria-describedby={errors.phone ? "phone-error" : undefined}
                     />
+                    {errors.phone && (
+                      <p id="phone-error" className="mt-1 text-xs text-red-500">{errors.phone}</p>
+                    )}
                   </div>
                   <div>
                     <label className="mb-2 block text-sm text-foreground/70">Budget (approx)</label>
