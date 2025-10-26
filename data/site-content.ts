@@ -26,20 +26,6 @@ export const siteContent = {
     autoSlideInterval: 5000, // milliseconds
   },
 
-  // Listing/Products Section
-  products: {
-    heading:
-      "Explore the range of chairs designed by Lenggah to match your taste, lifestyle, and space.",
-    categories: [
-      "Latest",
-      "Our Signatures",
-      "Chairs",
-      "Sofas",
-      "Puffs & Stools",
-      "Accessories",
-    ],
-  },
-
   // Patterns Section
   patterns: {
     heading:

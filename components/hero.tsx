@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { PaginationDots } from "@/components/pagination-dots";
 import { siteContent } from "@/data/site-content";
 
 export function Hero() {
@@ -53,24 +54,14 @@ export function Hero() {
             </div>
 
             {/* pagination dots */}
-            <div
-              className="mt-4 flex items-center gap-3 justify-center"
-              aria-label="Hero slides"
-            >
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveSlide(index)}
-                  aria-current={activeSlide === index}
-                  aria-label={`Go to slide ${index + 1}`}
-                  className={`h-3 w-3 rounded-full transition-all ${
-                    activeSlide === index
-                      ? "bg-(--color-brand-sand)"
-                      : "border border-(--color-brand-sand)"
-                  }`}
-                />
-              ))}
-            </div>
+            <PaginationDots
+              totalPages={slides.length}
+              currentPage={activeSlide + 1}
+              onPageChange={(page) => setActiveSlide(page - 1)}
+              variant="outlined"
+              color="sand"
+              className="mt-4"
+            />
           </div>
         </div>
 
