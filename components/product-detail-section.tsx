@@ -1,6 +1,12 @@
+"use client";
+
 import type React from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 import { Button } from "./ui/button";
+import { PaginationDots } from "./pagination-dots";
 import type { Product } from "@/data/product-listing-content";
 
 interface ProductDetailSectionProps {
@@ -8,29 +14,116 @@ interface ProductDetailSectionProps {
 }
 
 export function ProductDetailSection({ product }: ProductDetailSectionProps) {
+  const [selectedImage, setSelectedImage] = useState(product.images.main);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const allImages = product.images.gallery;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeThreshold = 50;
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0 && currentImageIndex < allImages.length - 1) {
+        // Swipe left - next image (slide from right to left)
+        setSlideDirection('left');
+        setTimeout(() => {
+          setCurrentImageIndex(currentImageIndex + 1);
+          setTimeout(() => setSlideDirection(null), 50);
+        }, 300);
+      } else if (diff < 0 && currentImageIndex > 0) {
+        // Swipe right - previous image (slide from left to right)
+        setSlideDirection('right');
+        setTimeout(() => {
+          setCurrentImageIndex(currentImageIndex - 1);
+          setTimeout(() => setSlideDirection(null), 50);
+        }, 300);
+      }
+    }
+  };
+
+  useEffect(() => {
+    setSelectedImage(allImages[currentImageIndex]);
+  }, [currentImageIndex, allImages]);
+
   return (
     <section className="bg-white">
       {/* White/sand expertise content panel */}
       <div className="bg-white px-4 py-10 md:py-16">
         <div className="mx-auto w-full max-w-6xl">
+          {/* Back to home link */}
+          <div className="mb-6">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm text-brand-ink/70 hover:text-brand-ink transition-colors group"
+            >
+              <span className="flex items-center justify-center h-8 w-8 rounded-full border border-brand-orange text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                <ChevronLeft className="h-4 w-4" />
+              </span>
+              <span>Back to Home</span>
+            </Link>
+          </div>
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-full md:col-span-8 grid grid-cols-1 gap-6 md:grid-cols-[320px,1fr]">
-              {/* Main product image */}
-              <div className="relative" style={{ minHeight: "400px" }}>
+              {/* Main product image - Swipeable on mobile */}
+              <div
+                ref={scrollContainerRef}
+                className="relative overflow-hidden"
+                style={{ minHeight: "400px" }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
                 <Image
-                  src={product.images.main}
+                  src={selectedImage}
                   alt={product.name}
                   fill
-                  className="object-cover rounded-lg"
+                  className={`object-cover rounded-lg transition-transform duration-300 ease-out ${
+                    slideDirection === 'left' ? '-translate-x-full' :
+                    slideDirection === 'right' ? 'translate-x-full' :
+                    'translate-x-0'
+                  }`}
                 />
+
+                {/* Pagination dots - inside image at bottom (mobile only) */}
+                <div className="md:hidden absolute bottom-4 left-0 right-0">
+                  <PaginationDots
+                    totalPages={allImages.length}
+                    currentPage={currentImageIndex + 1}
+                    onPageChange={(page) => setCurrentImageIndex(page - 1)}
+                    variant="filled"
+                    color="orange"
+                  />
+                </div>
               </div>
 
-              {/* Photo Grid */}
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-8 md:gap-3">
+              {/* Photo Grid - Image Selector (desktop only) */}
+              <div className="hidden md:grid grid-cols-2 gap-4 md:grid-cols-8 md:gap-3">
+                {/* Gallery thumbnails */}
                 {product.images.gallery.map((imageUrl, i) => (
-                  <div
+                  <button
                     key={i}
-                    className="relative aspect-square rounded-md overflow-hidden"
+                    onClick={() => {
+                      setSelectedImage(imageUrl);
+                      setCurrentImageIndex(i);
+                    }}
+                    className={`relative aspect-square rounded-md overflow-hidden cursor-pointer transition-all ${
+                      selectedImage === imageUrl
+                        ? "ring-2 ring-brand-orange"
+                        : "hover:opacity-80"
+                    }`}
                   >
                     <Image
                       src={imageUrl}
@@ -38,7 +131,7 @@ export function ProductDetailSection({ product }: ProductDetailSectionProps) {
                       fill
                       className="object-cover"
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>

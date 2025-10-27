@@ -8,14 +8,75 @@ export function Footer() {
       {/* Main Footer */}
       <footer className="bg-brand-teal px-8 py-16 text-white md:px-16 md:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+          {/* Mobile Layout */}
+          <div className="md:hidden space-y-8">
+            {/* Brand - Top */}
+            <div>
+              <BrandLogo variant="footer" className="brightness-0 invert" />
+            </div>
+
+            {/* About & Contact - 2 Columns */}
+            <div className="grid grid-cols-2 gap-8">
+              {/* About */}
+              <div>
+                <h4 className="mb-4 font-semibold">About</h4>
+                <ul className="space-y-3 text-sm text-white/80">
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Services
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Portfolio
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition-colors">
+                      Testimonials
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h4 className="mb-4 font-semibold">Contact</h4>
+                <ul className="space-y-3 text-sm text-white/80">
+                  <li>
+                    <a
+                      href="tel:+6281386288099"
+                      className="hover:text-white transition-colors"
+                    >
+                      +62 813-8628-8099
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="mailto:hello@lenggah.com"
+                      className="hover:text-white transition-colors"
+                    >
+                      hello@lenggah.com
+                    </a>
+                  </li>
+                  <li className="text-xs leading-relaxed">
+                    Jl. Munggang Gg. H. Guntong RT 10/RW 4, Kel. Balekambang,
+                    Jakarta Timur 13530
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden md:grid grid-cols-12 gap-12">
             {/* Brand */}
-            <div className="md:col-span-5 self-start">
+            <div className="col-span-5 self-start">
               <BrandLogo variant="footer" className="brightness-0 invert" />
             </div>
 
             {/* About */}
-            <div className="md:col-span-2">
+            <div className="col-span-2">
               <h4 className="mb-6 font-semibold">About</h4>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>
@@ -37,7 +98,7 @@ export function Footer() {
             </div>
 
             {/* Works */}
-            <div className="md:col-span-2">
+            <div className="col-span-2">
               <h4 className="mb-6 font-semibold">Works</h4>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>
@@ -59,7 +120,7 @@ export function Footer() {
             </div>
 
             {/* Contact */}
-            <div className="md:col-span-3">
+            <div className="col-span-3">
               <h4 className="mb-6 font-semibold">Contact</h4>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>

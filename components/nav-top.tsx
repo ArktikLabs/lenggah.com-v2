@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import { BrandLogo } from "./brand-logo";
 import { SearchInput } from "./search-input";
 import { Button } from "./ui/button";
@@ -41,10 +41,12 @@ export function NavTop() {
             <BrandLogo />
           </div>
 
-          {/* Search */}
-          <div className="col-span-2 md:col-span-3 flex justify-end">
+          {/* Search - hidden on mobile */}
+          <div className="hidden md:flex col-span-3 justify-end">
             <SearchInput />
           </div>
+          {/* Empty spacer for mobile grid */}
+          <div className="md:hidden col-span-2" />
         </div>
       </div>
 
@@ -69,33 +71,51 @@ export function NavTop() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - Full screen */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t border-(--color-border) bg-secondary">
-          <nav className="mx-auto max-w-7xl px-4 py-4">
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  href="#"
-                  className="block text-base text-brand-ink/70 hover:text-brand-ink"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Our Services
-                </Link>
-              </li>
-              {categories.map((item) => (
-                <li key={item}>
-                  <a
+        <div className="fixed inset-0 z-50 bg-background lg:hidden">
+          <div className="flex h-full flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-(--color-border) px-4 py-4">
+              <h2 className="text-lg font-medium">Menu</h2>
+              <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Menu Content */}
+            <nav className="flex-1 overflow-y-auto px-4 py-4">
+              {/* Search - shown at top of mobile menu */}
+              <div className="mb-6">
+                <SearchInput variant="mobile" />
+              </div>
+
+              <ul className="space-y-1">
+                <li>
+                  <Link
                     href="#"
-                    className="block text-base text-brand-ink/70 hover:text-brand-ink"
+                    className="flex items-center justify-between py-3 px-3 rounded-md text-sm text-brand-ink/70 hover:bg-secondary hover:text-brand-ink transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {item}
-                  </a>
+                    <span>Our Services</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </Link>
                 </li>
-              ))}
-            </ul>
-          </nav>
+                {categories.map((item) => (
+                  <li key={item}>
+                    <a
+                      href="#"
+                      className="flex items-center justify-between py-3 px-3 rounded-md text-sm text-brand-ink/70 hover:bg-secondary hover:text-brand-ink transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <span>{item}</span>
+                      <ChevronRight className="h-4 w-4" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </div>
       )}
     </header>

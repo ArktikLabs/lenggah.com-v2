@@ -10,6 +10,7 @@ import { SectionHeading } from "./section-heading"
 import { CategoryTabs } from "./category-tabs"
 import { PaginationDots } from "./pagination-dots"
 import { productListingContent } from "@/data/product-listing-content"
+import { ChevronDown, X } from "lucide-react"
 
 export function ListingSection() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -26,6 +27,11 @@ export function ListingSection() {
   const [appliedPriceRange, setAppliedPriceRange] = useState<string>("")
 
   const [sortBy, setSortBy] = useState<string>("default")
+
+  // Mobile filter/sort modal states
+  const [showMobileFilters, setShowMobileFilters] = useState(false)
+  const [showMobileSort, setShowMobileSort] = useState(false)
+  const [expandedAccordion, setExpandedAccordion] = useState<string | null>(null)
 
   const { itemsPerPage } = productListingContent.pagination
 
@@ -121,10 +127,18 @@ export function ListingSection() {
         }}
       />
 
+        {/* Signature Collection - Mobile only */}
+        <div className="mt-8 md:hidden">
+          <h3 className="text-base font-medium text-brand-ink">{productListingContent.sidebar.signatureCollection.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-brand-ink/70">
+            {productListingContent.sidebar.signatureCollection.description}
+          </p>
+        </div>
+
         {/* Main content grid */}
         <div className="mt-8 grid grid-cols-12 gap-6">
-          {/* Sidebar filters - 3 columns */}
-          <aside aria-label="Filters" className="col-span-12 md:col-span-3 space-y-8">
+          {/* Sidebar filters - 3 columns - Desktop only */}
+          <aside aria-label="Filters" className="hidden md:block md:col-span-3 space-y-8">
             <div>
               <h3 className="text-base font-medium text-brand-ink">{productListingContent.sidebar.signatureCollection.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-brand-ink/70">
@@ -173,7 +187,8 @@ export function ListingSection() {
               </div>
             </div>
 
-            <div className="rounded-md border border-(--color-border) p-4">
+            {/* Contact Us prompt - Desktop only */}
+            <div className="hidden md:block rounded-md border border-(--color-border) p-4">
               <p className="text-sm leading-relaxed text-brand-ink/70">
                 {productListingContent.sidebar.customPrompt.text}
               </p>
@@ -197,7 +212,9 @@ export function ListingSection() {
               <p className="text-sm text-brand-ink/80">
                 <span className="font-medium">{totalProducts}</span> products
               </p>
-              <div className="flex items-center gap-2 text-sm">
+
+              {/* Desktop: Sort dropdown */}
+              <div className="hidden md:flex items-center gap-2 text-sm">
                 <span className="text-brand-ink/70">Sort by</span>
                 <Select value={sortBy} onValueChange={setSortBy}>
                   <SelectTrigger className="h-8 w-28 rounded-md bg-secondary px-3 text-xs text-brand-ink/80">
@@ -212,6 +229,24 @@ export function ListingSection() {
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Mobile: Filter and Sort buttons */}
+              <div className="flex md:hidden gap-3 flex-1 justify-end">
+                <button
+                  onClick={() => setShowMobileFilters(true)}
+                  className="flex items-center justify-center gap-1.5 px-4 py-2 text-sm text-brand-ink/70 hover:text-brand-ink transition-colors"
+                >
+                  <span>Filter</span>
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setShowMobileSort(true)}
+                  className="flex items-center justify-center gap-1.5 px-4 py-2 text-sm text-brand-ink/70 hover:text-brand-ink transition-colors"
+                >
+                  <span>Sort</span>
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
             {/* Product grid */}
@@ -221,7 +256,7 @@ export function ListingSection() {
                   key={`${product.id}-${currentPage}`}
                   href={`/products/${product.id}`}
                 >
-                  <article className="overflow-hidden rounded-md border border-(--color-border) bg-card animate-in slide-in-from-right duration-500 hover:shadow-lg transition-shadow cursor-pointer">
+                  <article className="overflow-hidden rounded-md border border-(--color-border) bg-card animate-in slide-in-from-right duration-500 hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full">
                     <div className="relative bg-secondary" style={{ aspectRatio: "4 / 3" }}>
                       <Image
                         src={product.images.main}
@@ -230,9 +265,9 @@ export function ListingSection() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="bg-secondary px-3 py-2 md:px-4 md:py-3">
-                      <h4 className="line-clamp-2 text-xs md:text-sm text-brand-ink/80">{product.name}</h4>
-                      <p className="mt-1 md:mt-2 text-[10px] md:text-xs text-brand-ink/60">{product.price.formatted}</p>
+                    <div className="bg-secondary px-3 py-2 md:px-4 md:py-3 flex-1 flex flex-col">
+                      <h4 className="line-clamp-2 text-xs md:text-sm text-brand-ink/80 min-h-[2.5rem] md:min-h-[2.8rem]">{product.name}</h4>
+                      <p className="mt-auto pt-1 md:pt-2 text-[10px] md:text-xs text-brand-ink/60">{product.price.formatted}</p>
                     </div>
                   </article>
                 </Link>
@@ -248,8 +283,215 @@ export function ListingSection() {
               color="orange"
               showNavButtons={true}
             />
+
+            {/* Contact Us prompt - Mobile only */}
+            <div className="md:hidden rounded-md border border-(--color-border) p-4 mt-6">
+              <p className="text-sm leading-relaxed text-brand-ink/70">
+                {productListingContent.sidebar.customPrompt.text}
+              </p>
+              <a href="#contact" className="mt-4 block">
+                <Button
+                  variant="outline"
+                  colorScheme="ink"
+                  size="default"
+                  className="w-full"
+                >
+                  {productListingContent.sidebar.customPrompt.buttonText}
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
+
+      {/* Mobile Filter Modal */}
+      {showMobileFilters && (
+        <div className="fixed inset-0 z-50 bg-background md:hidden">
+          <div className="flex h-full flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-(--color-border) px-4 py-4">
+              <h2 className="text-lg font-medium">Filters</h2>
+              <button onClick={() => setShowMobileFilters(false)} aria-label="Close filters">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Filter Content - Scrollable */}
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              {/* Color Filter */}
+              <div className="border-b border-(--color-border) pb-4">
+                <button
+                  onClick={() => setExpandedAccordion(expandedAccordion === "color" ? null : "color")}
+                  className="flex w-full items-center justify-between py-3 text-left"
+                >
+                  <span className="font-medium">Colour</span>
+                  <ChevronDown className={`h-5 w-5 transition-transform ${expandedAccordion === "color" ? "rotate-180" : ""}`} />
+                </button>
+                {expandedAccordion === "color" && (
+                  <div className="space-y-1 pt-2">
+                    {productListingContent.filters.colors.map((color) => {
+                      const value = color.toLowerCase().replace(/\s+/g, "-");
+                      const isSelected = tempColor === value;
+                      return (
+                        <button
+                          key={color}
+                          onClick={() => setTempColor(value)}
+                          className={`flex w-full items-center justify-between py-3 px-3 rounded-md transition-colors ${
+                            isSelected ? "bg-brand-orange/10" : "hover:bg-secondary"
+                          }`}
+                        >
+                          <span className={`text-sm ${isSelected ? "font-medium text-brand-orange" : ""}`}>
+                            {color}
+                          </span>
+                          {isSelected && (
+                            <div className="h-2 w-2 rounded-full bg-brand-orange" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Style Filter */}
+              <div className="border-b border-(--color-border) pb-4">
+                <button
+                  onClick={() => setExpandedAccordion(expandedAccordion === "style" ? null : "style")}
+                  className="flex w-full items-center justify-between py-3 text-left"
+                >
+                  <span className="font-medium">Style</span>
+                  <ChevronDown className={`h-5 w-5 transition-transform ${expandedAccordion === "style" ? "rotate-180" : ""}`} />
+                </button>
+                {expandedAccordion === "style" && (
+                  <div className="space-y-1 pt-2">
+                    {productListingContent.filters.styles.map((style) => {
+                      const value = style.toLowerCase().replace(/\s+/g, "-");
+                      const isSelected = tempStyle === value;
+                      return (
+                        <button
+                          key={style}
+                          onClick={() => setTempStyle(value)}
+                          className={`flex w-full items-center justify-between py-3 px-3 rounded-md transition-colors ${
+                            isSelected ? "bg-brand-orange/10" : "hover:bg-secondary"
+                          }`}
+                        >
+                          <span className={`text-sm ${isSelected ? "font-medium text-brand-orange" : ""}`}>
+                            {style}
+                          </span>
+                          {isSelected && (
+                            <div className="h-2 w-2 rounded-full bg-brand-orange" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Price Range Filter */}
+              <div className="pb-4">
+                <button
+                  onClick={() => setExpandedAccordion(expandedAccordion === "price" ? null : "price")}
+                  className="flex w-full items-center justify-between py-3 text-left"
+                >
+                  <span className="font-medium">Price Range</span>
+                  <ChevronDown className={`h-5 w-5 transition-transform ${expandedAccordion === "price" ? "rotate-180" : ""}`} />
+                </button>
+                {expandedAccordion === "price" && (
+                  <div className="space-y-1 pt-2">
+                    {productListingContent.filters.priceRanges.map((range) => {
+                      const value = range.label.toLowerCase().replace(/\s+/g, "-");
+                      const isSelected = tempPriceRange === value;
+                      return (
+                        <button
+                          key={range.label}
+                          onClick={() => setTempPriceRange(value)}
+                          className={`flex w-full items-center justify-between py-3 px-3 rounded-md transition-colors ${
+                            isSelected ? "bg-brand-orange/10" : "hover:bg-secondary"
+                          }`}
+                        >
+                          <span className={`text-sm ${isSelected ? "font-medium text-brand-orange" : ""}`}>
+                            {range.label}
+                          </span>
+                          {isSelected && (
+                            <div className="h-2 w-2 rounded-full bg-brand-orange" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="border-t border-(--color-border) p-4">
+              <div className="flex gap-3">
+                <Button
+                  onClick={clearFilters}
+                  variant="outline"
+                  colorScheme="ink"
+                  className="flex-1"
+                >
+                  Clear All
+                </Button>
+                <Button
+                  onClick={() => {
+                    applyFilters()
+                    setShowMobileFilters(false)
+                  }}
+                  variant="primary"
+                  className="flex-1"
+                >
+                  Apply Filters
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Sort Modal */}
+      {showMobileSort && (
+        <div className="fixed inset-0 z-50 bg-background md:hidden">
+          <div className="flex h-full flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-(--color-border) px-4 py-4">
+              <h2 className="text-lg font-medium">Sort By</h2>
+              <button onClick={() => setShowMobileSort(false)} aria-label="Close sort">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Sort Options */}
+            <div className="flex-1 overflow-y-auto px-4 py-4">
+              <div className="space-y-1">
+                {productListingContent.sortOptions.map((option) => {
+                  const isSelected = sortBy === option.value;
+                  return (
+                    <button
+                      key={option.value}
+                      onClick={() => {
+                        setSortBy(option.value)
+                        setShowMobileSort(false)
+                      }}
+                      className={`flex w-full items-center justify-between py-3 px-3 rounded-md transition-colors ${
+                        isSelected ? "bg-brand-orange/10" : "hover:bg-secondary"
+                      }`}
+                    >
+                      <span className={`text-sm ${isSelected ? "font-medium text-brand-orange" : ""}`}>
+                        {option.label}
+                      </span>
+                      {isSelected && (
+                        <div className="h-2 w-2 rounded-full bg-brand-orange" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </SectionContainer>
   )
 }
