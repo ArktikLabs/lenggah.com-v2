@@ -34,11 +34,11 @@ export function JourneySection() {
               {steps.map((step) => (
                 <article
                   key={step.id}
-                  className="rounded-lg border border-black/5 bg-background shadow-sm flex-shrink-0 w-[85vw]"
+                  className="rounded-lg border border-black/5 bg-background shadow-sm flex-shrink-0 w-[85vw] h-[400px]"
                 >
                   <div className="flex flex-col h-full">
                     {/* Image block */}
-                    <div className="h-48 rounded-t-lg relative overflow-hidden">
+                    <div className="h-48 rounded-t-lg relative overflow-hidden shrink-0">
                       {step.imageUrl && (
                         <Image
                           src={step.imageUrl}
@@ -49,12 +49,12 @@ export function JourneySection() {
                       )}
                     </div>
                     {/* Copy */}
-                    <div className="flex flex-col p-6">
-                      <h3 className="text-lg font-medium text-foreground/90">
+                    <div className="flex flex-col p-6 overflow-hidden flex-1">
+                      <h3 className="text-lg font-medium text-foreground/90 shrink-0">
                         {step.title}
                       </h3>
-                      <div className="mt-3">
-                        <p className="text-sm leading-6 text-foreground/70 whitespace-pre-line line-clamp-6">
+                      <div className="mt-3 flex-1 overflow-y-auto">
+                        <p className="text-sm leading-6 text-foreground/70 whitespace-pre-line">
                           {step.body}
                         </p>
                       </div>
